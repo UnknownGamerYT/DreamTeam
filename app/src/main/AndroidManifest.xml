@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DreamTeam"
         tools:targetApi="31">
         <activity
+            android:name=".game_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

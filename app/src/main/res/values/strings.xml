@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DreamTeam</string>
+    <string name="startbutton">StartButton</string>
+    <string name="GameText">GameText</string>
 </resources>
