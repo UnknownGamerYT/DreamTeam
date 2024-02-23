@@ -15,29 +15,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView11"
+        <ImageButton
+            android:id="@+id/imageButton10"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/amx13105"
-            tools:srcCompat="@mipmap/amx13105" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 10 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/net" />
 
-        <ImageView
-            android:id="@+id/imageView12"
+        <ImageButton
+            android:id="@+id/imageButton11"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/defender"
-            tools:srcCompat="@mipmap/defender" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 11 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/moon" />
 
-        <ImageView
-            android:id="@+id/imageView13"
+        <ImageButton
+            android:id="@+id/imageButton12"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/e100"
-            tools:srcCompat="@mipmap/e100" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 12 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/man" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,32 +61,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
-        <ImageView
-            android:id="@+id/imageView14"
+        <ImageButton
+            android:id="@+id/imageButton13"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/obj704"
-            tools:srcCompat="@mipmap/obj704" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 13 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/question_mark" />
 
-        <ImageView
-            android:id="@+id/imageView15"
+        <ImageButton
+            android:id="@+id/imageButton14"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/t32"
-            tools:srcCompat="@mipmap/t32" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 14 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sun" />
 
-        <ImageView
-            android:id="@+id/imageView16"
+        <ImageButton
+            android:id="@+id/imageButton15"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/t502"
-            tools:srcCompat="@mipmap/t502" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 15 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/spider" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,32 +107,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout2">
 
-        <ImageView
-            android:id="@+id/imageView17"
+        <ImageButton
+            android:id="@+id/imageButton16"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/t57"
-            tools:srcCompat="@mipmap/t57" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 16 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/target" />
 
-        <ImageView
-            android:id="@+id/imageView18"
+        <ImageButton
+            android:id="@+id/imageButton17"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/wall121"
-            tools:srcCompat="@mipmap/wall121" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 17 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/tree" />
 
-        <ImageView
-            android:id="@+id/imageView19"
+        <ImageButton
+            android:id="@+id/imageButton18"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/wganniversary"
-            tools:srcCompat="@mipmap/wganniversary" />
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 18 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/turtle" />
     </LinearLayout>
 
     <LinearLayout
@@ -145,7 +175,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/net" />
+            android:src="@drawable/waterdrop" />
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="150dp"
@@ -156,7 +186,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/net" />
+            android:src="@drawable/yin_yang" />
 
     </LinearLayout>
 
@@ -181,7 +211,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/net" />
+            android:src="@drawable/skull" />
 
         <ImageButton
             android:id="@+id/imageButton5"
@@ -193,7 +223,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/net" />
+            android:src="@drawable/kitty" />
         <ImageButton
             android:id="@+id/imageButton6"
             android:layout_width="150dp"
@@ -204,7 +234,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/net" />
+            android:src="@drawable/igloo" />
     </LinearLayout>
 
     <LinearLayout
@@ -217,7 +247,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout5">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imageButton7"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -227,9 +257,9 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/dragon" />
+            app:srcCompat="@drawable/icecube" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imageButton8"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -239,14 +269,19 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/clown" />
+            app:srcCompat="@drawable/ladybug" />
 
-        <ImageView
-            android:id="@+id/imageView20"
+        <ImageButton
+            android:id="@+id/imageButton9"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/dog" />
+            android:contentDescription="Picture 9 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/eye" />
     </LinearLayout>
 
     <TextView
