@@ -17,24 +17,24 @@
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             app:srcCompat="@mipmap/amx13105"
             tools:srcCompat="@mipmap/amx13105" />
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             app:srcCompat="@mipmap/defender"
             tools:srcCompat="@mipmap/defender" />
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             app:srcCompat="@mipmap/e100"
             tools:srcCompat="@mipmap/e100" />
@@ -51,8 +51,8 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/obj704"
@@ -60,8 +60,8 @@
 
         <ImageView
             android:id="@+id/imageView15"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/t32"
@@ -69,8 +69,8 @@
 
         <ImageView
             android:id="@+id/imageView16"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/t502"
@@ -88,8 +88,8 @@
 
         <ImageView
             android:id="@+id/imageView17"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/t57"
@@ -97,8 +97,8 @@
 
         <ImageView
             android:id="@+id/imageView18"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/wall121"
@@ -106,8 +106,8 @@
 
         <ImageView
             android:id="@+id/imageView19"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/wganniversary"
@@ -137,19 +137,26 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:contentDescription="Picture 2 button"
-            android:src="@mipmap/wall121" />
-
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/net" />
         <ImageButton
             android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star"
-            android:contentDescription="Picture 3 button"/>
+            android:contentDescription="Picture 3 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/net" />
 
     </LinearLayout>
 
@@ -164,26 +171,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout4">
 
-        <ImageView
-            android:id="@+id/imageView6"
+        <ImageButton
+            android:id="@+id/imageButton4"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_lock_lock" />
+            android:contentDescription="Picture 4 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/net" />
 
-        <ImageView
-            android:id="@+id/imageView7"
+        <ImageButton
+            android:id="@+id/imageButton5"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
-
-        <ImageView
-            android:id="@+id/imageView8"
+            android:contentDescription="Picture 1 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/net" />
+        <ImageButton
+            android:id="@+id/imageButton6"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/presence_away" />
+            android:contentDescription="Picture 6 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/net" />
     </LinearLayout>
 
     <LinearLayout
@@ -197,17 +218,27 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout5">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imageButton7"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
+            android:contentDescription="Picture 6 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             app:srcCompat="@drawable/dragon" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/imageButton8"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
+            android:contentDescription="Picture 6 button"
+            android:onClick="Button1Press"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             app:srcCompat="@drawable/clown" />
 
         <ImageView
