@@ -83,7 +83,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/sun" />
+            android:src="@drawable/t32_background" />
 
         <ImageButton
             android:id="@+id/imageButton15"
@@ -219,12 +219,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
             android:contentDescription="Picture 5 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:src="@drawable/kitty" />
+            android:src="@drawable/ic_launcher_background" />
         <ImageButton
             android:id="@+id/imageButton6"
             android:layout_width="150dp"

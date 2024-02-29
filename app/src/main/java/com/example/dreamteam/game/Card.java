@@ -3,29 +3,30 @@ package com.example.dreamteam.game;
 import android.provider.MediaStore;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Card {
 
 
     /* Variables */
 
-    private final MediaStore.Images[] images;
+    private final List<Integer> images;
     private  int[] textureArray;
 
 
 
     /* Constructor */
 
-    public Card(MediaStore.Images[] images) {
+    public Card(List<Integer> images) {
         this.images = images;
     }
 
 
     /* Methods */
 
-    public boolean contains(MediaStore.Images s) {
-        for (MediaStore.Images Image : images) {
-            if (Image.equals(s)) {
+    public boolean contains(int s) {
+        for (int Image : images) {
+            if (Image == s) {
                 return true;
             }
         }
@@ -35,21 +36,21 @@ public class Card {
 
 
 
-    public MediaStore.Images[] getimages() {
+    public List<Integer> getimages() {
         return images;
     }
 
     @Override
     public String toString() {
         return "Card->{" +
-                "images=" + Arrays.toString(images) +
+                "images=" + images.toString() +
                 "}";
     }
 
     public String toFormattedString() {
         String s = "Card->{\n\t\tsymbols=\n";
-        for (MediaStore.Images image : images) {
-            s = s.concat(String.format("\t\t\t%s\n", image.toString()));
+        for (int image : images) {
+            s = s.concat(String.format("\t\t\t%s\n", image));
         }
         return s.concat("\t\t}");
     }

@@ -8,19 +8,23 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dreamteam.game.Card;
+import com.example.dreamteam.game.CardPair;
 import com.example.dreamteam.game.DobbleGame;
 
+import java.util.List;
 import java.util.Random;
 
-public class game_activity extends AppCompatActivity implements View.OnClickListener{
+public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
-
+    int[] card1Buttons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton9,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8};
+    int[] card2Buttons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton18,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
-        dobbleGame = new DobbleGame();
+        this.dobbleGame = new DobbleGame();
         ImageButton imageButton = findViewById(R.id.imageButton);
         ImageButton imageButton2 = findViewById(R.id.imageButton2);
         ImageButton imageButton3 = findViewById(R.id.imageButton3);
@@ -67,7 +71,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.imageButton:
                 ButtonPressed(v, R.id.imageButton);
@@ -127,28 +131,45 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
         }
     }
-    public void ButtonPressed(View v, int buttonId){
-        TextView text=(TextView)findViewById(R.id.ScoreText);
+
+    public void ButtonPressed(View v, int buttonId) {
+        Initialize_Game();
+
+        TextView text = (TextView) findViewById(R.id.ScoreText);
         String[] separated = text.getText().toString().split(" ");
         int value = Integer.parseInt(separated[1]);
-        ImageButton img= (ImageButton) findViewById(buttonId);
-        int[] images = dobbleGame.getFullImageList();
-        Random random = new Random();
-        img.setImageResource(images[random.nextInt(images.length)]);
+        //ImageButton img = (ImageButton) findViewById(buttonId);
+        //int[] images = dobbleGame.getFullImageList();
+        //Random random = new Random();
+        //img.setImageResource(images[random.nextInt(images.length)]);
         if (true)//if wins
         {
             value += 1;
             Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            value-= 1;
+        } else {
+            value -= 1;
             Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
         }
         String newText = "Score: " + value;
 
         text.setText(newText);
     }
+
+    public void Initialize_Game(){
+        CardPair cardPair = dobbleGame.getDeck().pickCardPair();
+
+        List<Integer> card1Images = cardPair.cardB.getimages();
+        List<Integer> card2Images = cardPair.cardT.getimages();
+
+        for (int i=0; i<=card1Buttons.length-1; i++){
+            ImageButton img1 = (ImageButton) findViewById(card1Buttons[i]);
+            img1.setImageResource(card1Images.get(i));
+            //
+            ImageButton img2 = (ImageButton) findViewById(card2Buttons[i]);
+            img2.setImageResource(card2Images.get(i));
+        }
+    }
+
     public void Button1Press(View v) {
         TextView text=(TextView)findViewById(R.id.ScoreText);
         String[] separated = text.getText().toString().split(" ");

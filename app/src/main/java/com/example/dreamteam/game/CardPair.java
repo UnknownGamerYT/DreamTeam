@@ -13,7 +13,7 @@ public class CardPair {
         solved = false;
     }
 
-    public boolean isMatchingSymbol(MediaStore.Images image) {
+    public boolean isMatchingSymbol(int image) {
         return cardB.contains(image) && cardT.contains(image);
     }
 
