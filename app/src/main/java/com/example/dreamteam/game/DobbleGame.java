@@ -22,7 +22,8 @@ public class DobbleGame {
         currCardPair = null;
 
     }
-    private void updateCardPair() {
+
+    public void updateCardPair() {
         if (deck.isEmpty()) {
             //endgame
         } else if (currCardPair == null) {
@@ -41,5 +42,8 @@ public class DobbleGame {
 
     public Deck getDeck() {
         return deck;
+    }
+    public CardPair getCurrCardPair(){
+        return currCardPair;
     }
 }

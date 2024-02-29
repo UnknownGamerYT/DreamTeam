@@ -105,8 +105,6 @@ public class Deck {
             throw new IllegalArgumentException("Not enough symbols available");
         }
 
-
-
         ArrayList<Card> deck = new ArrayList<>();
 
         for (int i = 0; i <= symbolPerCard - 1; i++) {

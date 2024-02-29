@@ -64,6 +64,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton17.setOnClickListener(this);
         imageButton18.setOnClickListener(this);
         //imageButton7.setOnClickListener(this);
+        Update_Game();
 
 
     }
@@ -133,12 +134,20 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     }
 
     public void ButtonPressed(View v, int buttonId) {
-        Initialize_Game();
+
+        CardPair cardPair = dobbleGame.getCurrCardPair();
 
         TextView text = (TextView) findViewById(R.id.ScoreText);
         String[] separated = text.getText().toString().split(" ");
         int value = Integer.parseInt(separated[1]);
-        //ImageButton img = (ImageButton) findViewById(buttonId);
+
+        ImageButton img = (ImageButton) findViewById(buttonId);
+        int symbolId = (Integer) img.getTag();//Integer.parseInt(
+        if(cardPair.isMatchingSymbol(symbolId)){
+            cardPair.solved = true;
+            Update_Game();
+        }
+
         //int[] images = dobbleGame.getFullImageList();
         //Random random = new Random();
         //img.setImageResource(images[random.nextInt(images.length)]);
@@ -155,8 +164,11 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         text.setText(newText);
     }
 
-    public void Initialize_Game(){
-        CardPair cardPair = dobbleGame.getDeck().pickCardPair();
+    public void Update_Game(){
+
+        dobbleGame.updateCardPair();//.getDeck().pickCardPair();
+        CardPair cardPair = dobbleGame.getCurrCardPair();
+
 
         List<Integer> card1Images = cardPair.cardB.getimages();
         List<Integer> card2Images = cardPair.cardT.getimages();
@@ -164,34 +176,16 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         for (int i=0; i<=card1Buttons.length-1; i++){
             ImageButton img1 = (ImageButton) findViewById(card1Buttons[i]);
             img1.setImageResource(card1Images.get(i));
+            img1.setTag(card1Images.get(i));
             //
             ImageButton img2 = (ImageButton) findViewById(card2Buttons[i]);
             img2.setImageResource(card2Images.get(i));
+            img2.setTag(card2Images.get(i));
         }
+        //if solved.
+
     }
 
-    public void Button1Press(View v) {
-        TextView text=(TextView)findViewById(R.id.ScoreText);
-        String[] separated = text.getText().toString().split(" ");
-        int value = Integer.parseInt(separated[1]);
-        ImageButton img= (ImageButton) findViewById(R.id.imageButton);
-        int[] images = dobbleGame.getFullImageList();
-        Random random = new Random();
-        img.setImageResource(images[random.nextInt(images.length)]);
-        if (true)//if wins
-        {
-            value += 1;
-            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            value-= 1;
-            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
-        }
-        String newText = "Score: " + value;
-
-        text.setText(newText);
-    }
 
 
 }
