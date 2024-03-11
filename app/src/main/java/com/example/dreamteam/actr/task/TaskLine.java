@@ -1,7 +1,7 @@
 package com.example.dreamteam.actr.task;
 
 import java.awt.*;
-import javax.swing.JPanel;
+import javax.swing.Jpanel;
 
 public class TaskLine extends JPanel implements TaskComponent
 {

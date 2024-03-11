@@ -4,10 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.util.Iterator;
-import javax.swing.*;
+import javax.swing
 
-import actr.core.Model;
-import actr.env.Main;
+import com.example.dreamteam.actr.core.Model;
+import com.example.dreamteam.actr.env.Main;
 
 public abstract class Task extends JPanel
 {
@@ -177,7 +177,7 @@ public abstract class Task extends JPanel
 
 	public void placeFinger (double timeDelta, final int x, final int y)
 	{
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				placeFinger (x, y);
 			}
@@ -192,7 +192,7 @@ public abstract class Task extends JPanel
 
 	public void removeFinger (double timeDelta)
 	{
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				removeFinger();
 			}
@@ -202,14 +202,14 @@ public abstract class Task extends JPanel
 	public void attendSound () { soundAttended = true; }
 	public void unattendSound () { soundAttended = false; }
 
-	public void addEvent (actr.core.Event event)
+	public void addEvent (com.example.dreamteam.actr.core.Event event)
 	{
 		model.addEvent (event);
 	}
 
 	public void addUpdate (final double timeDelta)
 	{
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				update (model.getTime());
 			}
@@ -219,7 +219,7 @@ public abstract class Task extends JPanel
 	public void addPeriodicUpdate (final double timeDelta)
 	{
 		update (model.getTime());
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				addPeriodicUpdate (timeDelta);
 			}
@@ -237,7 +237,7 @@ public abstract class Task extends JPanel
 
 	public void addInstruction (double timeDelta, final String text)
 	{
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				removeFinger();
 				instructionField.setText (text);
@@ -248,7 +248,7 @@ public abstract class Task extends JPanel
 
 	public void addInstruction (double timeDelta, final String text, final TaskComponent component)
 	{
-		model.addEvent (new actr.core.Event (model.getTime()+timeDelta, "task", "update") {
+		model.addEvent (new com.example.dreamteam.actr.core.Event (model.getTime()+timeDelta, "task", "update") {
 			public void action() {
 				placeFinger (component.centerX(), component.centerY());
 				instructionField.setText (text);

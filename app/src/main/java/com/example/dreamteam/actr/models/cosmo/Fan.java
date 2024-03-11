@@ -1,9 +1,9 @@
 package com.example.dreamteam.actr.models.cosmo;
 
-import actr.task.*;
+import com.example.dreamteam.actr.task.*;
 import java.util.Random;
 
-public class Fan extends actr.task.Task
+public class Fan extends com.example.dreamteam.actr.task.Task
 {
 	TaskLabel labels[];
 	TaskLabel personLabel, locationLabel;
@@ -27,7 +27,7 @@ public class Fan extends actr.task.Task
 	double modelTimes[];
 	double score;
 
-	class FanResult extends actr.task.Result
+	class FanResult extends com.example.dreamteam.actr.task.Result
 	{
 		boolean correct[] = new boolean[tuples.length];
 		double rts[] = new double[tuples.length];
@@ -107,7 +107,7 @@ public class Fan extends actr.task.Task
 			for (int j=0 ; j<studyIndices.length ; j++)
 			{
 				final int index = studyIndices[j];
-				addEvent (new actr.core.Event (time+=spc, "task", "update") {
+				addEvent (new com.example.dreamteam.actr.core.Event (time+=spc, "task", "update") {
 					public void action() {
 						personLabel.setText (tuples[index][0]);
 						locationLabel.setText (tuples[index][1]);
@@ -126,7 +126,7 @@ public class Fan extends actr.task.Task
 		for (int j=0 ; j<tuples.length ; j++)
 		{
 			final int index = testIndices[j];
-			addEvent (new actr.core.Event (time+=spc, "task", "update") {
+			addEvent (new com.example.dreamteam.actr.core.Event (time+=spc, "task", "update") {
 				public void action() {
 					trialStart = model.getTime();
 					currentTuple = index;
@@ -185,7 +185,7 @@ public class Fan extends actr.task.Task
 		}
 		for (int i=0 ; i<tuples.length ; i++)
 			modelTimes[i] = (counts[i]==0) ? 0 : (modelTimes[i]/counts[i]);
-		score = actr.env.Statistics.correlation (modelTimes, observedTimes);
+		score = com.example.dreamteam.actr.env.Statistics.correlation (modelTimes, observedTimes);
 	}
 
 	public void printResults ()

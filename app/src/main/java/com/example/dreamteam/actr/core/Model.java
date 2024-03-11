@@ -1,8 +1,8 @@
 package com.example.dreamteam.actr.core;
 
 import java.net.URL;
-import actr.env.*;
-import actr.task.Task;
+import com.example.dreamteam.actr.env.*;
+import com.example.dreamteam.actr.task.Task;
 
 public class Model
 {

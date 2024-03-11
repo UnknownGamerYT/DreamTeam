@@ -1,11 +1,11 @@
 package com.example.dreamteam.actr.models.cosmo;
 
-import actr.task.*;
-import actr.env.*;
+import com.example.dreamteam.actr.task.*;
+import com.example.dreamteam.actr.env.*;
 
 import java.util.*;
 
-public class Paired extends actr.task.Task
+public class Paired extends com.example.dreamteam.actr.task.Task
 {
 	TaskLabel label;
 	double lastTime = 0;
@@ -34,7 +34,7 @@ public class Paired extends actr.task.Task
 		double responseTotalTime = 0;
 	}
 
-	class PairedResult extends actr.task.Result
+	class PairedResult extends com.example.dreamteam.actr.task.Result
 	{
 		Vector<PairedTrial> trials;
 		PairedResult () { trials = new Vector<PairedTrial>(); }
@@ -149,8 +149,8 @@ public class Paired extends actr.task.Task
 			modelTimes[i] = (responsesCorrect==0) ? 0 : (responseTime/responsesCorrect);
 			modelCorrect[i] = (responses==0) ? 0 : (1.0*responsesCorrect/responses);
 		}
-		score = 0.5 * (actr.env.Statistics.correlation (modelTimes, observedTimes)
-				+ actr.env.Statistics.correlation (modelCorrect, observedCorrect));
+		score = 0.5 * (com.example.dreamteam.actr.env.Statistics.correlation (modelTimes, observedTimes)
+				+ com.example.dreamteam.actr.env.Statistics.correlation (modelCorrect, observedCorrect));
 	}
 
 	public void printResults ()
