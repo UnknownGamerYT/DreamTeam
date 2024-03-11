@@ -25,8 +25,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/net"
-            android:background="@drawable/circular_background" />
+            android:src="@drawable/net" />
 
         <ImageButton
             android:id="@+id/imageButton11"
@@ -38,8 +37,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/moon"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/moon" />
 
         <ImageButton
             android:id="@+id/imageButton12"
@@ -51,8 +49,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/man"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/man" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,8 +71,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/question_mark"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/question_mark" />
 
         <ImageButton
             android:id="@+id/imageButton14"
@@ -87,8 +83,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/t32_background"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/t32_background" />
 
         <ImageButton
             android:id="@+id/imageButton15"
@@ -100,8 +95,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/spider"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/spider" />
     </LinearLayout>
 
     <LinearLayout
@@ -123,8 +117,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/target"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/target" />
 
         <ImageButton
             android:id="@+id/imageButton17"
@@ -136,8 +129,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/tree"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/tree" />
 
         <ImageButton
             android:id="@+id/imageButton18"
@@ -149,8 +141,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/turtle"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/turtle" />
     </LinearLayout>
 
     <LinearLayout
@@ -172,8 +163,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/net"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/net" />
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -185,8 +175,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/waterdrop"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/waterdrop" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -198,8 +187,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/yin_yang"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/yin_yang" />
 
     </LinearLayout>
 
@@ -224,8 +212,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/skull"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/skull" />
 
         <ImageButton
             android:id="@+id/imageButton5"
@@ -237,8 +224,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher_background"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/ic_launcher_background" />
         <ImageButton
             android:id="@+id/imageButton6"
             android:layout_width="150dp"
@@ -249,8 +235,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/igloo"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/igloo" />
     </LinearLayout>
 
     <LinearLayout
@@ -273,8 +258,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/icecube"
-            android:background="@drawable/circular_background"/>
+            app:srcCompat="@drawable/icecube" />
 
         <ImageButton
             android:id="@+id/imageButton8"
@@ -286,8 +270,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ladybug"
-            android:background="@drawable/circular_background"/>
+            app:srcCompat="@drawable/ladybug" />
 
         <ImageButton
             android:id="@+id/imageButton9"
@@ -299,8 +282,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/eye"
-            android:background="@drawable/circular_background"/>
+            app:srcCompat="@drawable/eye" />
     </LinearLayout>
 
     <TextView

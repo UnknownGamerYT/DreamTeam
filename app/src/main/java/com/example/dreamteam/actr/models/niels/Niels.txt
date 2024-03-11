@@ -1,0 +1,974 @@
+
+(sgp :v nil :act nil :esc t :lf .63 :mas 1.6 :ga 1.0 :imaginal-activation 1.0 ;; from U5fan
+
+;; :add-chunk-on-new-request nil
+
+ :bll .1
+ :epl t
+ 
+ :rt 0
+ :ul t
+ :egs .1
+ :iu 10
+ :alpha .2
+)
+
+#|
+(sgp :esc t
+:v nil
+:act nil
+:cst nil
+:pct nil
+:ul t
+:epl t
+:rt -1.7
+:lf 0.4
+:ans 0.5
+:egs 0.1
+:bll 0.5
+:iu 10
+:alpha 0.2
+)
+|#
+
+(add-dm
+ ("bank" isa string value bank)
+ ("captain" isa string value captain)
+ ("castle" isa string value castle)
+ ("cave" isa string value cave)
+ ("church" isa string value church)
+ ("debutante" isa string value debutante)
+ ("earl" isa string value earl)
+ ("fireman" isa string value fireman)
+ ("giant" isa string value giant)
+ ("hippie" isa string value hippie)
+ ("lawyer" isa string value lawyer)
+ ("park" isa string value park)
+ ("store" isa string value store)
+)
+(set-all-base-levels 1000)
+
+(add-dm
+ (goal isa get-instruction)
+)
+
+(goal-focus goal)
+
+(p get-instruction*interrupt
+	=goal>
+		- isa get-instruction
+	=aural-location>
+		isa audio-event
+	?aural>
+		buffer empty
+		state free
+==>
+	+goal>
+		isa get-instruction
+	+imaginal>
+		isa instruction
+		previous start
+		type default
+	+aural>
+		isa sound
+		event =aural-location
+)
+(spp get-instruction*interrupt :u 20)
+
+(p get-instruction*create-state
+	=goal>
+		isa get-instruction
+	?imaginal>
+		buffer empty
+		state free
+==>
+	+imaginal>
+		isa instruction
+		previous start
+		type default
+)
+
+(p get-instruction*listen
+	=goal>
+		isa get-instruction
+	=aural-location>
+		isa audio-event
+	?aural>
+		buffer empty
+		state free
+==>
+	+aural>
+		isa sound
+		event =aural-location
+)
+
+(p get-instruction*done
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		type =type
+	=aural>
+		isa sound
+		content .
+==>
+	-imaginal>
+	+imaginal>
+		isa instruction
+		previous =imaginal
+		type =type
+	+goal>
+		isa rehearse
+		chunk =imaginal
+		times 5
+		next-goal get-instruction
+)
+(spp get-instruction*done :u 20)
+
+(p get-instruction*done-to
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action to
+		object =type
+	=aural>
+		isa sound
+		content .
+==>
+	=imaginal>
+		isa instruction
+		previous start
+		type =type
+		action nil
+		object nil
+)
+(spp get-instruction*done-to :u 30)
+
+(p get-instruction*done-start
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action start
+		object =type
+	=aural>
+		isa sound
+		content .
+==>
+	+imaginal>
+		isa problem-state
+		type =type
+		previous nil
+	+goal>
+		isa do-instruction
+)
+(spp get-instruction*done-start :u 30)
+
+(p get-instruction*encode-action
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		action =word
+)
+(spp get-instruction*encode-action :u -10)
+
+(p get-instruction*encode-object
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action =action
+		object nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		object =word
+)
+(spp get-instruction*encode-object :u -10)
+
+(p get-instruction*encode-read-word
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action read
+		object nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		object =word
+	+goal>
+		isa encode-location
+)
+
+(p get-instruction*encode-recall-preposition
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		- action nil
+		- object nil
+		preposition nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		preposition =word
+)
+
+(p get-instruction*encode-recall-preparg
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		- action nil
+		- object nil
+		- preposition nil
+		preparg nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		preparg =word
+)
+
+(p get-instruction*encode-recall-preposition2
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		- action nil
+		- object nil
+		- preposition nil
+		- preparg nil
+		preposition2 nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		preposition2 =word
+)
+
+(p get-instruction*encode-recall-preparg2
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		- action nil
+		- object nil
+		- preposition nil
+		- preparg nil
+		- preposition2 nil
+		preparg2 nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		preparg2 =word
+)
+
+(p get-instruction*encode-if-condition
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action if
+		condition nil
+	=aural>
+		isa sound
+		content =word
+		- content same
+		- content different
+==>
+	=imaginal>
+		action nil
+		condition =word
+)
+
+(p get-instruction*encode-if-same
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action if
+		condition nil
+	=aural>
+		isa sound
+		content same
+==>
+	=imaginal>
+		condition same
+)
+
+(p get-instruction*encode-if-different
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action if
+		condition nil
+	=aural>
+		isa sound
+		content different
+==>
+	=imaginal>
+		condition different
+)
+
+(p get-instruction*encode-if-condarg1
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action if
+		- condition nil
+		condarg1 nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		condarg1 =word
+)
+
+(p get-instruction*encode-if-condarg2
+	=goal>
+		isa get-instruction
+	=imaginal>
+		isa instruction
+		action if
+		- condition nil
+		- condarg1 nil
+		condarg2 nil
+	=aural>
+		isa sound
+		content =word
+==>
+	=imaginal>
+		action nil
+		condarg2 =word
+)
+
+;;-----
+
+(p encode-location*find-finger
+	=goal>
+		isa encode-location
+	?visual-location>
+		state free
+		- buffer requested
+	?visual>
+		state free
+		buffer empty
+==>
+ 	+visual-location>
+ 		isa visual-location
+		kind finger
+)
+
+(p encode-location*fixate-object
+	=goal>
+		isa encode-location
+	=imaginal>
+	=visual-location>
+		isa visual-location
+		kind finger
+	?visual>
+		state free
+		buffer empty
+==>
+ 	+visual>
+ 		isa move-attention
+ 		screen-pos =visual-location
+	=imaginal>
+		location =visual-location
+)
+
+(p encode-location*done
+	=goal>
+		isa encode-location
+	=visual>
+==>
+	+goal>
+		isa get-instruction
+)
+#|
+(p encode-location*done
+	=goal>
+		isa encode-location
+	=imaginal>
+		type =type
+	=visual>
+==>
+	-imaginal>
+	+imaginal>
+		isa instruction
+		previous =imaginal
+		type =type
+	+goal>
+		isa rehearse
+		chunk =imaginal
+		times 5
+		next-goal get-instruction
+)
+|#
+
+;-----
+
+(p rehearse*start
+	=goal>
+		isa rehearse
+		chunk =chunk
+		times =times
+	=imaginal>
+	?retrieval>
+		buffer empty
+		state free
+==>
+	!bind! =newcount (- =times 1)
+	+retrieval> =chunk
+	=imaginal>
+		count =newcount
+)
+
+(p rehearse*again
+	=goal>
+		isa rehearse
+		chunk =chunk
+	=imaginal>
+		count =count
+		> count 0
+	=retrieval>
+==>
+	!bind! =newcount (- =count 1)
+	=imaginal>
+		count =newcount
+	+retrieval> =chunk
+)
+
+(p rehearse*error-try-again
+	=goal>
+		isa rehearse
+		chunk =chunk
+	=imaginal>
+		count =count
+		> count 0
+	?retrieval>
+		state error
+==>
+	!bind! =newcount (- =count 1)
+	=imaginal>
+		count =newcount
+	+retrieval> =chunk
+)
+
+(p rehearse*done
+	=goal>
+		isa rehearse
+		next-goal =next-goal
+	=imaginal>
+		count 0
+	=retrieval>
+==>
+	=imaginal>
+		count nil
+	+goal>
+		isa =next-goal
+)
+
+(p rehearse*error-done
+	=goal>
+		isa rehearse
+		next-goal =next-goal
+	=imaginal>
+		count 0
+	?retrieval>
+		state error
+==>
+	=imaginal>
+		count nil
+	+goal>
+		isa =next-goal
+)
+
+;-----
+
+(p do-instruction*retrieve-start
+	=goal>
+		isa do-instruction
+	=imaginal>
+		type =type
+		previous nil
+	?retrieval>
+		buffer empty
+		state free
+==>
+	+imaginal>
+		isa problem-state
+		type =type
+	+retrieval>
+		isa instruction
+		type =type
+		previous start
+)
+(spp do-instruction*retrieve-start :u -10)
+
+(p do-instruction*retrieve-next
+	=goal>
+		isa do-instruction
+	=imaginal>
+		isa problem-state
+		type =type
+		previous =previous
+	?retrieval>
+		buffer empty
+		state free
+==>
+	=imaginal>
+	+retrieval>
+		isa instruction
+		type =type
+		previous =previous
+)
+
+(p do-instruction*retrieve-try-again
+	=goal>
+		isa do-instruction
+	=imaginal>
+		isa problem-state
+		type =type
+		previous =previous
+	?retrieval>
+		state error
+==>
+	=imaginal>
+	+retrieval>
+		isa instruction
+		type =type
+		previous =previous
+)
+
+(p do-instruction*read-word
+	=goal>
+		isa do-instruction
+	=imaginal>
+	=retrieval>
+		isa instruction
+		action read
+		object =object
+		location =location
+==>
+	=imaginal>
+		previous =retrieval
+	+goal>
+		isa read-word
+		object =object
+		location =location
+)
+
+(p do-instruction*recall
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		action recall
+		object =object
+		preparg =for
+		preparg2 nil
+	=imaginal>
+		=for =forvalue
+==>
+	=imaginal>
+		previous =retrieval
+	+goal>
+		isa recall
+		slot1 =for
+		value1 =forvalue
+		slot2 =object
+		as =object
+)
+
+(p do-instruction*recall-as
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		action recall
+		object =object
+		preparg =for
+		preparg2 =as
+	=imaginal>
+		=for =forvalue
+==>
+	=imaginal>
+		previous =retrieval
+	+goal>
+		isa recall
+		slot1 =for
+		value1 =forvalue
+		slot2 =object
+		as =as
+)
+
+(p do-instruction*if-recall-type
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition recall-success
+		action type
+		object =slot
+	=imaginal>
+		retrieval success
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa type
+		slot =slot
+)
+
+(p do-instruction*if-recall-type-failure
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition recall-success
+		action type
+		object =object
+	=imaginal>
+		retrieval failure
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa do-instruction
+)
+
+(p do-instruction*if-same-then-type
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition same
+		condarg1 =condarg1
+		condarg2 =condarg2
+		action type
+		object =object
+	=imaginal>
+		=condarg1 =same
+		=condarg2 =same
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa type
+		object =object
+)
+
+(p do-instruction*if-same-then-type-false
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition same
+		condarg1 =condarg1
+		condarg2 =condarg2
+		action type
+		object =object
+	=imaginal>
+		=condarg1 =same
+		- =condarg2 =same
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa do-instruction
+)
+
+(p do-instruction*if-different-then-type
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition different
+		condarg1 =condarg1
+		condarg2 =condarg2
+		action type
+		object =object
+	=imaginal>
+		=condarg1 =same
+		- =condarg2 =same
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa type
+		object =object
+)
+
+(p do-instruction*if-different-then-type-false
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		condition different
+		condarg1 =condarg1
+		condarg2 =condarg2
+		action type
+		object =object
+	=imaginal>
+		=condarg1 =same
+		=condarg2 =same
+==>
+	=imaginal>
+		retrieval nil
+		previous =retrieval
+	+goal>
+		isa do-instruction
+)
+
+(p do-instruction*wait-for-visual-change
+	=goal>
+		isa do-instruction
+	=imaginal>
+	=retrieval>
+		isa instruction
+		action wait-for
+		object visual-change
+==>
+	=imaginal>
+		previous =retrieval
+	+goal>
+		isa wait-for-visual-change
+)
+
+(p do-instruction*memorize-state
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		action memorize
+		object state
+	=imaginal>
+		type =type
+==>
+	=imaginal>
+		previous nil ;; otherwise you get decreasing fan for the instructions??
+	-imaginal>
+	+imaginal>
+		isa problem-state
+		type =type
+		previous =retrieval
+	+goal>
+		isa rehearse ;do-instruction ;rehearse
+		chunk =imaginal
+		times 2
+		next-goal do-instruction
+)
+
+(p do-instruction*repeat
+	=goal>
+		isa do-instruction
+	=retrieval>
+		isa instruction
+		action repeat
+	=imaginal>
+==>
+	=imaginal>
+		previous start
+	+goal>
+		isa do-instruction
+)
+(spp do-instruction*repeat :reward 20)
+
+(p do-instruction*done
+	=goal>
+		isa do-instruction
+	=imaginal>
+		next-goal =next-goal
+	=retrieval>
+		isa instruction
+	?imaginal>
+		state free
+	?retrieval>
+		state free
+	?visual>
+		state free
+==>
+	+goal>
+		isa =next-goal
+)
+(spp do-instruction*done :u -50)
+
+;-----
+
+(p read-word*find
+	=goal>
+		isa read-word
+		object =object
+		location =location
+	?visual-location>
+		state free
+		- buffer requested
+	?visual>
+		state free
+		buffer empty
+==>
+ 	+visual-location>
+ 		isa visual-location
+ 		kind text
+ 		:nearest =location
+)
+
+(p read-word*encode
+	=goal>
+		isa read-word
+		object =object
+		location =location
+	=visual-location>
+		isa visual-location
+	?visual-location>
+		buffer requested
+	?visual>
+		state free
+		buffer empty
+==>
+ 	+visual>
+ 		isa move-attention
+ 		screen-pos =visual-location
+)
+
+(p read-word*done
+	=goal>
+		isa read-word
+		object =object
+		location =location
+	=visual>
+      isa      text
+      value    =value
+==>
+	=imaginal>
+		=object =value
+	+goal>
+		isa do-instruction
+)
+
+;-----
+
+(p recall*retrieve
+	=goal>
+		isa recall
+		slot1 =for
+		value1 =forvalue
+		slot2 =forobject
+	?retrieval>
+		state free
+		buffer empty
+==>
+ 	+retrieval>
+ 		=for =forvalue
+)
+
+(p recall*success
+	=goal>
+		isa recall
+		slot1 =for
+		value1 =forvalue
+		slot2 =object
+		as =as
+	=imaginal>
+	=retrieval>
+		=for =forvalue
+		=object =objvalue
+==>
+	=imaginal>
+		retrieval success
+		=as =objvalue
+	+goal>
+		isa do-instruction
+)
+
+(p recall*failure
+	=goal>
+		isa recall
+		slot1 =for
+		value1 =forvalue
+		slot2 =object
+	=imaginal>
+	?retrieval>
+		state error
+==>
+	-retrieval>
+	=imaginal>
+		retrieval failure
+	+goal>
+		isa do-instruction
+)
+
+;-----
+
+(p type*type-object
+	=goal>
+		isa type
+		object =object
+	?manual>
+		state free
+==>
+	+manual>
+		isa press-key
+		key =object
+	+goal>
+		isa do-instruction
+)
+
+(p type*type-slot
+	=goal>
+		isa type
+		slot =slot
+	=imaginal>
+		=slot =object
+	?manual>
+		state free
+==>
+	=imaginal>
+	+manual>
+		isa press-key
+		key =object
+	+goal>
+		isa do-instruction
+)
+
+;-----
+
+(p wait-for-visual-change*done
+	=goal>
+		isa wait-for-visual-change
+	?visual-location>
+		buffer unrequested
+==>
+	+goal>
+		isa do-instruction
+)
+(spp wait-for-visual-change*done :u -10)
