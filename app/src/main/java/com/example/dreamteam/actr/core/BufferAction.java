@@ -161,15 +161,16 @@ class BufferAction
 					double value = Utilities.evalCompute (tokens.iterator());
 					inst.set (bind, Symbol.get(value));
 				} catch (Exception e) {
-					double value = model.task.bind (tokens.iterator());
-					inst.set (bind, Symbol.get(value));
+					//double value = model.task.bind (tokens.iterator());
+					//inst.set (bind, Symbol.get(value));
 				}
 			}
 			else
 			{
 				try {
 					Utilities.evalCompute (tokens.iterator());
-				} catch (Exception e) { model.task.eval (tokens.iterator()); }
+				} catch (Exception e) { //model.task.eval (tokens.iterator())//
+					 }
 			}
 		}
 	}

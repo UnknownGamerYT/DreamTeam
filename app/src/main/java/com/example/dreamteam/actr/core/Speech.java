@@ -66,7 +66,7 @@ class Speech extends Module
 	
 	void sendVocalToAudio (String text)
 	{
-		model.addAural (Symbol.getUnique("vocal").name, "word", text);
+		//model.addAural (Symbol.getUnique("vocal").name, "word", text);
 	}
 
 	void update ()
@@ -100,7 +100,7 @@ class Speech extends Module
 			eventTime = initiateMovement (eventTime);
 			model.addEvent (new Event (eventTime, "speech", "output-speech "+text) {
 				public void action() {
-					model.task.speak (text);
+					//model.task.speak (text);
 					sendVocalToAudio (text);
 				}
 			});

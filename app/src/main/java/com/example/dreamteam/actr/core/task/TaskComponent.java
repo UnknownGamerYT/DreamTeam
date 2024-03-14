@@ -1,4 +1,4 @@
-package com.example.dreamteam.actr.task;
+package com.example.dreamteam.actr.core.task;
 
 public interface TaskComponent
 {

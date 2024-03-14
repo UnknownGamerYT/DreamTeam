@@ -3,8 +3,8 @@ package com.example.dreamteam.actr.core;
 import java.io.*;
 import java.net.URL;
 
-import com.example.dreamteam.actr.env.Main;
-import com.example.dreamteam.actr.task.Task;
+//import com.example.dreamteam.actr.env.Main;
+import com.example.dreamteam.actr.core.task.Task;
 
 
 
@@ -33,9 +33,9 @@ class Parser
 		ParseException () { super ("parse error on line " + t.getLine()); }
 	}
 
-	Model parseModel (String name, Task task, Main main) throws ParseException
+	Model parseModel (String name , Task task) throws ParseException
 	{
-		model = new Model (name, task, main);
+		model = new Model (name, task);
 		parseCommands (model);
 		return model;
 	}

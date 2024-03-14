@@ -283,7 +283,7 @@ class Motor extends Module
 			eventTime += keyClosureTime;
 			model.addEvent (new Event (eventTime, "motor", "output mouse click") {
 				public void action() {
-					model.task.clickMouse();
+					//model.task.clickMouse();
 				}
 			});
 			eventTime -= keyClosureTime;
@@ -333,8 +333,8 @@ class Motor extends Module
 			eventTime += keyClosureTime;
 			model.addEvent (new Event (eventTime, "motor", "output key "+key) {
 				public void action() {
-					if (key.equals("mouse")) model.task.clickMouse();
-					else model.task.typeKey (convertToChar (key));
+					//if (key.equals("mouse")) model.task.clickMouse();
+					//else model.task.typeKey (convertToChar (key));
 				}
 			});
 			eventTime -= keyClosureTime;

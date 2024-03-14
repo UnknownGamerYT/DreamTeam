@@ -1,8 +1,13 @@
 package com.example.dreamteam.actr.core;
 
+import android.widget.Toast;
+
+import com.example.dreamteam.MainActivity;
+import com.example.dreamteam.game_activity;
+
 import java.net.URL;
-import com.example.dreamteam.actr.env.*;
-import com.example.dreamteam.actr.task.Task;
+//import com.example.dreamteam.actr.env.*;
+import com.example.dreamteam.actr.core.task.Task;
 
 public class Model
 {
@@ -11,7 +16,7 @@ public class Model
 	Declarative declarative;
 	Procedural procedural;
 	Vision vision;
-	Audio audio;
+	//Audio audio;
 	Motor motor;
 	Speech speech;
 	Imaginal imaginal;
@@ -20,7 +25,7 @@ public class Model
 
 	private double time;
 	private boolean stop;
-	private Main main;
+	//private Main main;
 	private boolean taskUpdated = false;
 
 	public boolean realTime = false;
@@ -28,15 +33,15 @@ public class Model
 	boolean runUntilStop = false;
 	boolean bufferStuffing = true;
 
-	Model (String name, Task task, Main main)
+	Model (String name,Task task)
 	{
 		this.name = name;
 		this.task = task;
-		this.main = main;
+		//this.main = main;
 		declarative = new Declarative (this);
 		procedural = new Procedural (this);
 		vision = new Vision (this);
-		audio = new Audio (this);
+		//audio = new Audio (this);
 		motor = new Motor (this);
 		speech = new Speech (this);
 		imaginal = new Imaginal (this);
@@ -48,15 +53,15 @@ public class Model
 	}
 
 
-	public static Model load (URL url, String name, Task task, Main main)
+	public static Model load (URL url, String name,Task task)
 	{
-		try { return new Parser(url).parseModel (name, task, main); }
+		try { return new Parser(url).parseModel (name , task); }
 		catch (Exception e) { e.printStackTrace(); return null; }
 	}
 
-	public static Model parse (String text, String name, Task task, Main main)
+	public static Model parse (String text, String name,Task task)
 	{
-		try { return new Parser(text).parseModel (name, task, main); }
+		try { return new Parser(text).parseModel (name, task); }
 		catch (Exception e) { e.printStackTrace(); return null; }
 	}
 
@@ -78,7 +83,7 @@ public class Model
 		declarative.initialize();
 		procedural.initialize();
 		vision.initialize();
-		audio.initialize();
+		//audio.initialize();
 		motor.initialize();
 		speech.initialize();
 		imaginal.initialize();
@@ -97,7 +102,7 @@ public class Model
 	void update ()
 	{
 		vision.update();
-		audio.update();
+		//audio.update();
 		motor.update();
 		speech.update();
 		declarative.update();
@@ -164,7 +169,7 @@ public class Model
 		}
 		if (verboseTrace) output ("------", "done");
 
-		//System.out.println (declarative);
+		System.out.println (declarative);
 	}
 
 
@@ -223,10 +228,10 @@ public class Model
 		else if (parameter.equals(":visual-finst-span")) vision.visualFinstSpan = Double.valueOf(value);
 		else if (parameter.equals(":visual-onset-span")) vision.visualOnsetSpan = Double.valueOf(value);
 
-		else if (parameter.equals(":tone-detect-delay")) audio.toneDetectDelay = Double.valueOf(value);
-		else if (parameter.equals(":tone-recode-delay")) audio.toneRecodeDelay = Double.valueOf(value);
-		else if (parameter.equals(":digit-detect-delay")) audio.digitDetectDelay = Double.valueOf(value);
-		else if (parameter.equals(":digit-recode-delay")) audio.digitRecodeDelay = Double.valueOf(value);
+		//else if (parameter.equals(":tone-detect-delay")) audio.toneDetectDelay = Double.valueOf(value);
+		//else if (parameter.equals(":tone-recode-delay")) audio.toneRecodeDelay = Double.valueOf(value);
+		//else if (parameter.equals(":digit-detect-delay")) audio.digitDetectDelay = Double.valueOf(value);
+		//else if (parameter.equals(":digit-recode-delay")) audio.digitRecodeDelay = Double.valueOf(value);
 
 		else if (parameter.equals(":motor-feature-prep-time")) motor.featurePrepTime = Double.valueOf(value);
 		else if (parameter.equals(":motor-initiation-time")) motor.movementInitiationTime = Double.valueOf(value);
@@ -272,11 +277,11 @@ public class Model
 		taskUpdated = true;
 	}
 
-	public void addAural (final String id, final String type, final String content)
-	{
-		audio.addAural (id, type, content);
-		taskUpdated = true;
-	}
+	//public void addAural (final String id, final String type, final String content)
+	//{
+	//	audio.addAural (id, type, content);
+	//	taskUpdated = true;
+	//}
 
 	public void runCommand (String s)
 	{
@@ -312,32 +317,29 @@ public class Model
 		if (procedural.getLastFired() == null) return null;
 		return procedural.getLastFired().getProduction().name.toString();
 	}
-
 	public void output (String resource, String s)
 	{
 		String out = String.format ("%9.3f   %-15s   %s", time, resource, s);
-		//		System.out.println (out);
-		main.output (out);
+				System.out.println (out);
 	}
 
 	public void output (String s)
 	{
-		//		System.out.println (s);
-		main.output (s);
+			System.out.println (s);
 	}
 
 	public void warning (String error)
 	{
 		String out = String.format ("Warning: %s", error);
-		//		System.out.println (out);
-		main.output (out);
+				System.out.println (out);
+	//	main.output (out);
 	}
 
 	public void error (String error)
 	{
 		String out = String.format ("Error: %s", error);
-		//		System.out.println (out);
-		main.output (out);
+				System.out.println (out);
+		//main.output (out);
 	}
 
 	public String toString ()

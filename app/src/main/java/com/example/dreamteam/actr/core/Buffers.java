@@ -60,7 +60,7 @@ class Buffers
 				state.set (Symbol.state, Symbol.free);
 			}
 		}
-		if (buffer==Symbol.get("aural")) model.task.unattendSound();
+		//if (buffer==Symbol.get("aural")) model.task.unattendSound();
 	}
 
 	Chunk getBufferChunk (Symbol value)
