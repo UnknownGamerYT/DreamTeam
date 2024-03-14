@@ -105,7 +105,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <ImageButton
             android:id="@+id/imageButton16"
@@ -155,8 +155,8 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 1 button"
@@ -167,8 +167,8 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 2 button"
@@ -179,8 +179,8 @@
 
         <ImageButton
             android:id="@+id/imageButton3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:contentDescription="Picture 3 button"
             android:onClick="onClick"
@@ -196,28 +196,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="607dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout4">
 
         <ImageButton
             android:id="@+id/imageButton4"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
             android:contentDescription="Picture 4 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             android:src="@drawable/skull" />
 
         <ImageButton
             android:id="@+id/imageButton5"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 5 button"
@@ -225,16 +223,17 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher_background" />
+
         <ImageButton
             android:id="@+id/imageButton6"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
             android:contentDescription="Picture 6 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             android:src="@drawable/igloo" />
     </LinearLayout>
 
@@ -246,42 +245,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout5">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <ImageButton
             android:id="@+id/imageButton7"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
             android:contentDescription="Picture 6 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             app:srcCompat="@drawable/icecube" />
 
         <ImageButton
             android:id="@+id/imageButton8"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
-                android:contentDescription="Picture 6 button"
+            android:adjustViewBounds="true"
+            android:contentDescription="Picture 6 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             app:srcCompat="@drawable/ladybug" />
 
         <ImageButton
             android:id="@+id/imageButton9"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
             android:contentDescription="Picture 9 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
             app:srcCompat="@drawable/eye" />
     </LinearLayout>
 
@@ -294,6 +293,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
