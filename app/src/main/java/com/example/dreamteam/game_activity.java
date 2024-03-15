@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.dreamteam.actr.core.*;
+import com.example.dreamteam.actr.core.task.Task;
 import com.example.dreamteam.game.Card;
 import com.example.dreamteam.game.CardPair;
 import com.example.dreamteam.game.DobbleGame;
@@ -20,6 +21,43 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     int[] card2Buttons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton18,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //visual input, separate images into chunks, and put them into visicon.
+        //desrcibe each image with with words. color, shape, etc. *
+
+        //1 option use actr(txt)
+
+        //2nd option:
+        //create a simulation what actr model would do
+        // simulation of what model is doing and write in it java.
+        // what it can see, how long eye movement takes, hardcode everything.
+        //if it is harder to find a match,
+        // it should be harder to find a match for computer as well(size,rotation)
+
+        //simulation. most important things to simulate. Timing is very imortant,
+        // memory timing, eye, 'finger/motor',
+        //what features you can identify, make different objects hard to notice,
+        //ability to make mistakes, keep track of what you attended, but also forget
+        // .
+
+
+        //I think we proceed with simulation of actR
+
+
+        //bullshit actr nonsense
+        Task task = new Task("dobble");
+        Model model = new Model("Model1", task);
+        /*
+        model.addVisual();
+        Event event = new Event() {
+            @Override
+            public void action() {
+
+            }
+        };
+        model.addEvent(event);
+        model.runCommand("add-dm");
+        model.setParameter();
+        model.run();*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);

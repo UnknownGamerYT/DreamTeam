@@ -33,7 +33,7 @@ public class Model
 	boolean runUntilStop = false;
 	boolean bufferStuffing = true;
 
-	Model (String name,Task task)
+	public Model (String name,Task task)
 	{
 		this.name = name;
 		this.task = task;

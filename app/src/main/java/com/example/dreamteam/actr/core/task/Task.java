@@ -9,7 +9,7 @@ import java.util.Iterator;
 import com.example.dreamteam.actr.core.Model;
 //import com.example.dreamteam.actr.env.Main;
 
-public abstract class Task
+public class Task
 {
 	String name;
 	public Model model;
@@ -70,8 +70,8 @@ public abstract class Task
 	public void analyze (Result[] results) { }
 	public void printResults () { }
 
-	public abstract boolean check ();
-	public abstract double score ();
+	//public abstract boolean check ();
+	//public abstract double score ();
 
 	//public Component add (Component comp)
 	//{
