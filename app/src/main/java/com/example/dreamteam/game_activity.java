@@ -219,8 +219,6 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             img2.setImageResource(card2Images.get(i));
             img2.setTag(card2Images.get(i));
         }
-        //if solved.
-
     }
 
 
