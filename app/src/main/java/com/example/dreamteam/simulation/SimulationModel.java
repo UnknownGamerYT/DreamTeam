@@ -6,6 +6,7 @@ import static java.lang.Math.random;
 import com.example.dreamteam.game.CardPair;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -82,6 +83,7 @@ public class SimulationModel {
         return time;
     }
     public void simulateClick(){
+
         double motorAction = 0.1;
         modelTime += motorAction;
         realTime += motorAction;
@@ -91,7 +93,7 @@ public class SimulationModel {
 
     }
     //cards > look for a match > select matching pic
-    public void lookForMatch(CardPair cardPair){
+    public int lookForMatch(CardPair cardPair){
         List<Integer> topCardImages = cardPair.cardT.getimages();
         List<Integer> bottomCardImages = cardPair.cardB.getimages();
 
@@ -100,14 +102,20 @@ public class SimulationModel {
         //memorize image from one card, cycle through other card images to look for match
         //track model time of course.
         //^repeat until a match is found.
+        int prediction = 0;
         for (int i=0; i<=topCardImages.size()-1; i++){
             //memorize topCardImages[i];
+            //add looking delay
             for (int j=0; j<=bottomCardImages.size()-1; j++) {
                 //look if there is a match, keep track of what u check, but dont 'hard' memorize the whole card.
+                if(Objects.equals(topCardImages.get(i), bottomCardImages.get(j))){
+                    prediction = i;
+                    return prediction;
+                }
 
             }
         }
-
+        return prediction;
         //return image/button/match/selection
     }
 }

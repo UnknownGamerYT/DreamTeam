@@ -2,6 +2,7 @@ package com.example.dreamteam;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -11,14 +12,15 @@ import com.example.dreamteam.actr.core.task.Task;
 import com.example.dreamteam.game.Card;
 import com.example.dreamteam.game.CardPair;
 import com.example.dreamteam.game.DobbleGame;
+import com.example.dreamteam.simulation.SimulationModel;
 
 import java.util.List;
 import java.util.Random;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
-    int[] card1Buttons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton9,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8};
-    int[] card2Buttons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton18,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17};
+    int[] bottomCardButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9};
+    int[] topCardButtons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //visual input, separate images into chunks, and put them into visicon.
@@ -102,6 +104,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton18.setOnClickListener(this);
         //imageButton7.setOnClickListener(this);
         Update_Game();
+        //initModel();
 
 
     }
@@ -112,65 +115,65 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
 
             case R.id.imageButton:
-                ButtonPressed(v, R.id.imageButton);
+                ButtonPressed(R.id.imageButton);
                 break;
             case R.id.imageButton2:
-                ButtonPressed(v, R.id.imageButton2);
+                ButtonPressed( R.id.imageButton2);
                 break;
             case R.id.imageButton3:
-                ButtonPressed(v, R.id.imageButton3);
+                ButtonPressed( R.id.imageButton3);
                 break;
             case R.id.imageButton4:
-                ButtonPressed(v, R.id.imageButton4);
+                ButtonPressed( R.id.imageButton4);
                 break;
             case R.id.imageButton5:
-                ButtonPressed(v, R.id.imageButton5);
+                ButtonPressed( R.id.imageButton5);
                 break;
             case R.id.imageButton6:
-                ButtonPressed(v, R.id.imageButton6);
+                ButtonPressed( R.id.imageButton6);
                 break;
             case R.id.imageButton7:
-                ButtonPressed(v, R.id.imageButton7);
+                ButtonPressed( R.id.imageButton7);
                 break;
 
             case R.id.imageButton8:
-                ButtonPressed(v, R.id.imageButton8);
+                ButtonPressed( R.id.imageButton8);
                 break;
             case R.id.imageButton9:
-                ButtonPressed(v, R.id.imageButton9);
+                ButtonPressed( R.id.imageButton9);
                 break;
             case R.id.imageButton10:
-                ButtonPressed(v, R.id.imageButton10);
+                ButtonPressed( R.id.imageButton10);
                 break;
             case R.id.imageButton11:
-                ButtonPressed(v, R.id.imageButton11);
+                ButtonPressed( R.id.imageButton11);
                 break;
             case R.id.imageButton12:
-                ButtonPressed(v, R.id.imageButton12);
+                ButtonPressed( R.id.imageButton12);
                 break;
             case R.id.imageButton13:
-                ButtonPressed(v, R.id.imageButton13);
+                ButtonPressed( R.id.imageButton13);
                 break;
             case R.id.imageButton14:
-                ButtonPressed(v, R.id.imageButton14);
+                ButtonPressed( R.id.imageButton14);
                 break;
             case R.id.imageButton15:
-                ButtonPressed(v, R.id.imageButton15);
+                ButtonPressed( R.id.imageButton15);
                 break;
             case R.id.imageButton16:
-                ButtonPressed(v, R.id.imageButton16);
+                ButtonPressed( R.id.imageButton16);
                 break;
             case R.id.imageButton17:
-                ButtonPressed(v, R.id.imageButton17);
+                ButtonPressed( R.id.imageButton17);
                 break;
             case R.id.imageButton18:
-                ButtonPressed(v, R.id.imageButton18);
+                ButtonPressed( R.id.imageButton18);
                 break;
 
         }
     }
 
-    public void ButtonPressed(View v, int buttonId) {
+    public void ButtonPressed(int buttonId) {
 
         CardPair cardPair = dobbleGame.getCurrCardPair();
 
@@ -223,18 +226,38 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         CardPair cardPair = dobbleGame.getCurrCardPair();
 
 
+
         List<Integer> card1Images = cardPair.cardB.getimages();
         List<Integer> card2Images = cardPair.cardT.getimages();
 
-        for (int i=0; i<=card1Buttons.length-1; i++){
-            ImageButton img1 = (ImageButton) findViewById(card1Buttons[i]);
+        for (int i=0; i<=bottomCardButtons.length-1; i++){
+            ImageButton img1 = (ImageButton) findViewById(bottomCardButtons[i]);
             img1.setImageResource(card1Images.get(i));
             img1.setTag(card1Images.get(i));
             //
-            ImageButton img2 = (ImageButton) findViewById(card2Buttons[i]);
+            ImageButton img2 = (ImageButton) findViewById(topCardButtons[i]);
             img2.setImageResource(card2Images.get(i));
             img2.setTag(card2Images.get(i));
         }
+
+    }
+
+    public void initModel(){
+
+
+        Handler handler = new Handler();
+
+        final Runnable r = new Runnable() {
+            public void run() {
+                //tv.append("Hello World");
+                SimulationModel modl = new SimulationModel("");
+                int prediction = modl.lookForMatch(dobbleGame.getCurrCardPair());
+                ButtonPressed(topCardButtons[prediction]);
+                handler.postDelayed(this, 5000);
+            }
+        };
+
+        handler.postDelayed(r, 5000);
     }
 
 
