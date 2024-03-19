@@ -177,6 +177,9 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         TextView text = (TextView) findViewById(R.id.ScoreText);
         String[] separated = text.getText().toString().split(" ");
         int value = Integer.parseInt(separated[1]);
+        TextView text1 = (TextView) findViewById(R.id.ScoreText1);
+        String[] separated1 = text.getText().toString().split(" ");
+        int value1 = Integer.parseInt(separated[1]);
 
         ImageButton img = (ImageButton) findViewById(buttonId);
         int symbolId = (Integer) img.getTag();//Integer.parseInt(
@@ -188,17 +191,30 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         //int[] images = dobbleGame.getFullImageList();
         //Random random = new Random();
         //img.setImageResource(images[random.nextInt(images.length)]);
-        if (true)//if wins
+        if (cardPair.solved == true)//if wins
         {
             value += 1;
+            value1 += 1;
             Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-        } else {
-            value -= 1;
-            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
-        }
-        String newText = "Score: " + value;
+            String newText = "Score: " + value;
+            String newText1 = "Score: " + value1;
+            text.setText(newText);
+            text1.setText(newText1);
 
-        text.setText(newText);
+        }
+        else {
+            value -= 1;
+            value1 -= 1;
+            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
+            String newText = "Score: " + value;
+            String newText1 = "Score: " + value1;
+            text.setText(newText);
+            text1.setText(newText1);
+
+        }
+
+
+        //text.setText(newText);
     }
 
     public void Update_Game(){

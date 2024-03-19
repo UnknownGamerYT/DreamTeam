@@ -17,8 +17,8 @@
 
         <ImageButton
             android:id="@+id/imageButton10"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="0.6in"
+            android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 10 button"
@@ -29,8 +29,8 @@
 
         <ImageButton
             android:id="@+id/imageButton11"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="0.6in"
+            android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 11 button"
@@ -41,8 +41,8 @@
 
         <ImageButton
             android:id="@+id/imageButton12"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="0.6in"
+            android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 12 button"
@@ -284,8 +284,42 @@
             app:srcCompat="@drawable/eye" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/ScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0"
+            android:textColor="#fBBf"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="0.488" />
+    </LinearLayout>
+<LinearLayout
+    android:id="@+id/linearLayout8"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toTopOf="@id/linearLayout7"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+</LinearLayout>
+
     <TextView
-        android:id="@+id/ScoreText"
+        android:id="@+id/ScoreText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Score: 0"
@@ -294,6 +328,7 @@
         app:layout_constraintBottom_toTopOf="@id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
