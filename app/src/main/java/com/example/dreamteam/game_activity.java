@@ -182,8 +182,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         String[] separated = text.getText().toString().split(" ");
         int value = Integer.parseInt(separated[1]);
         TextView text1 = (TextView) findViewById(R.id.ScoreText1);
-        String[] separated1 = text.getText().toString().split(" ");
-        int value1 = Integer.parseInt(separated[1]);
+        String[] separated1 = text1.getText().toString().split(" ");
+        int value1 = Integer.parseInt(separated1[1]);
 
         ImageButton img = (ImageButton) findViewById(buttonId);
         int symbolId = (Integer) img.getTag();//Integer.parseInt(
@@ -198,31 +198,30 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         if (cardPair.solved == true)//if wins
         {
             if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
-                value += 1;
-                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-                String newText = "Score: " + value;
-                text.setText(newText);
+                value1 += 1;
             }
             else {
-                value1 += 1;
-                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-                String newText1 = "Score: " + value1;
-                text1.setText(newText1);
+                value += 1;
             }
+            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
+            String newText = "Score: " + value;
+            text.setText(newText);
+            String newText1 = "Score: " + value1;
+            text1.setText(newText1);
         }
         else {
-            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
-                value -= 1;
-                Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
-                String newText = "Score: " + value;
-                text.setText(newText);
+            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)) {
+                value1 -= 1;
             }
             else {
-                value1 -= 1;
-                Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
-                String newText1 = "Score: " + value1;
-                text1.setText(newText1);
+                value -= 1;
             }
+            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
+            String newText = "Score: " + value;
+            text.setText(newText);
+            String newText1 = "Score: " + value1;
+            text1.setText(newText1);
+
         }
 
 
