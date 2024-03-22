@@ -15,6 +15,7 @@ import com.example.dreamteam.game.DobbleGame;
 import com.example.dreamteam.simulation.SimulationModel;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.Random;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
@@ -196,24 +197,32 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         //img.setImageResource(images[random.nextInt(images.length)]);
         if (cardPair.solved == true)//if wins
         {
-            value += 1;
-            value1 += 1;
-            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
-            String newText = "Score: " + value;
-            String newText1 = "Score: " + value1;
-            text.setText(newText);
-            text1.setText(newText1);
-
+            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
+                value += 1;
+                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
+                String newText = "Score: " + value;
+                text.setText(newText);
+            }
+            else {
+                value1 += 1;
+                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
+                String newText1 = "Score: " + value1;
+                text1.setText(newText1);
+            }
         }
         else {
-            value -= 1;
-            value1 -= 1;
-            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
-            String newText = "Score: " + value;
-            String newText1 = "Score: " + value1;
-            text.setText(newText);
-            text1.setText(newText1);
-
+            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
+                value -= 1;
+                Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
+                String newText = "Score: " + value;
+                text.setText(newText);
+            }
+            else {
+                value1 -= 1;
+                Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
+                String newText1 = "Score: " + value1;
+                text1.setText(newText1);
+            }
         }
 
 
