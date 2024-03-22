@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
-    boolean runModel = false;
+    boolean runModel = true;
     int[] bottomCardButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9};
     int[] topCardButtons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
     @Override
@@ -258,7 +258,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     public void initModel(){
         Handler handler = new Handler();
         SimulationModel modl = new SimulationModel("");
-        int prediction = modl.lookForMatch(dobbleGame.getCurrCardPair());
+        CardPair currentpair = dobbleGame.getCurrCardPair();
+        int prediction = modl.lookForMatch(currentpair);
         final Runnable r = new Runnable() {
             public void run() {
                 ButtonPressed(topCardButtons[prediction]);
@@ -269,7 +270,11 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         };
 
         long timeToFind = modl.getTimeToFind();
-        handler.postDelayed(r,timeToFind);// need to cancel when player guesses correctly first //handler.removeCallbacks(r);
+        handler.postDelayed(r,timeToFind);// need to cancel when player guesses correctly first //handler.removeCallbacks(r)// ;
+        if (currentpair != dobbleGame.getCurrCardPair()) {
+            handler.removeCallbacks(r);
+        }
+
     }
 
 
