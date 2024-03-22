@@ -20,6 +20,7 @@ import java.util.Random;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
+    boolean runModel = false;
     int[] bottomCardButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9};
     int[] topCardButtons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
     @Override
@@ -105,7 +106,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton18.setOnClickListener(this);
         //imageButton7.setOnClickListener(this);
         Update_Game();
-        //initModel();
+
 
 
     }
@@ -203,7 +204,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             else {
                 value += 1;
             }
-            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
             String newText = "Score: " + value;
             text.setText(newText);
             String newText1 = "Score: " + value1;
@@ -216,7 +217,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             else {
                 value -= 1;
             }
-            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_SHORT).show();
             String newText = "Score: " + value;
             text.setText(newText);
             String newText1 = "Score: " + value1;
@@ -248,25 +249,29 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             img2.setTag(card2Images.get(i));
         }
 
+        if(runModel){
+            initModel();
+        }
+
     }
 
     public void initModel(){
-
-
         Handler handler = new Handler();
-
+        SimulationModel modl = new SimulationModel("");
+        int prediction = modl.lookForMatch(dobbleGame.getCurrCardPair());
         final Runnable r = new Runnable() {
             public void run() {
-                //tv.append("Hello World");
-                SimulationModel modl = new SimulationModel("");
-                int prediction = modl.lookForMatch(dobbleGame.getCurrCardPair());
                 ButtonPressed(topCardButtons[prediction]);
-                handler.postDelayed(this, 5000);
+                //handler.postDelayed(this, 5000);
             }
+
+
         };
 
-        handler.postDelayed(r, 5000);
+        long timeToFind = modl.getTimeToFind();
+        handler.postDelayed(r,timeToFind);// need to cancel when player guesses correctly first //handler.removeCallbacks(r);
     }
+
 
 
 

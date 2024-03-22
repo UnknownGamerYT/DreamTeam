@@ -17,6 +17,8 @@ public class SimulationModel {
     private double realTime;
     private double modelTime;
     boolean runUntilStop = false;
+
+    long timeToFind = 1000;
     String[] memory;
 
     public SimulationModel(String name) {
@@ -24,6 +26,13 @@ public class SimulationModel {
     }
 
 
+    public long getTimeToFind() {
+        return timeToFind;
+    }
+
+    public void setTimeToFind(long timeToFind) {
+        this.timeToFind = timeToFind;
+    }
     public String getName() {
         return name;
     }
@@ -89,11 +98,12 @@ public class SimulationModel {
         realTime += motorAction;
     }
 
-    public void simulateEyeMovement(){
-
+    public long eyeMovementDuration(){
+        return 250;
     }
     //cards > look for a match > select matching pic
     public int lookForMatch(CardPair cardPair){
+        this.timeToFind = 1000;
         List<Integer> topCardImages = cardPair.cardT.getimages();
         List<Integer> bottomCardImages = cardPair.cardB.getimages();
 
@@ -104,9 +114,11 @@ public class SimulationModel {
         //^repeat until a match is found.
         int prediction = 0;
         for (int i=0; i<=topCardImages.size()-1; i++){
+            this.timeToFind += eyeMovementDuration();//todo: increase this by eye movement and other cognitive stages instead
             //memorize topCardImages[i];
             //add looking delay
             for (int j=0; j<=bottomCardImages.size()-1; j++) {
+                this.timeToFind += eyeMovementDuration();//todo: increase this by eye movement and other cognitive stages instead
                 //look if there is a match, keep track of what u check, but dont 'hard' memorize the whole card.
                 if(Objects.equals(topCardImages.get(i), bottomCardImages.get(j))){
                     prediction = i;
@@ -115,6 +127,7 @@ public class SimulationModel {
 
             }
         }
+
         return prediction;
         //return image/button/match/selection
     }
