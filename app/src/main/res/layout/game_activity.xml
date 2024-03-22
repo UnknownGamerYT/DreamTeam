@@ -73,15 +73,14 @@
             android:scaleType="fitCenter"
             android:src="@drawable/question_mark" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton14"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 14 button"
-            android:onClick="onClick"
-            android:padding="10dp"
+            android:padding="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/t32_background" />
 
@@ -212,15 +211,14 @@
             android:scaleType="fitCenter"
             android:src="@drawable/skull" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton5"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:contentDescription="Picture 5 button"
-            android:onClick="onClick"
-            android:padding="10dp"
+            android:padding="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher_background" />
 

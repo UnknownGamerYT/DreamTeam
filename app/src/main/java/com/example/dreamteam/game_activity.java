@@ -69,7 +69,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         ImageButton imageButton2 = findViewById(R.id.imageButton2);
         ImageButton imageButton3 = findViewById(R.id.imageButton3);
         ImageButton imageButton4 = findViewById(R.id.imageButton4);
-        ImageButton imageButton5 = findViewById(R.id.imageButton5);
+        //ImageButton imageButton5 = findViewById(R.id.imageButton5);
         ImageButton imageButton6 = findViewById(R.id.imageButton6);
         ImageButton imageButton7 = findViewById(R.id.imageButton7);
         ImageButton imageButton8 = findViewById(R.id.imageButton8);
@@ -78,7 +78,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         ImageButton imageButton11 = findViewById(R.id.imageButton11);
         ImageButton imageButton12 = findViewById(R.id.imageButton12);
         ImageButton imageButton13 = findViewById(R.id.imageButton13);
-        ImageButton imageButton14 = findViewById(R.id.imageButton14);
+        //ImageButton imageButton14 = findViewById(R.id.imageButton14);
         ImageButton imageButton15 = findViewById(R.id.imageButton15);
         ImageButton imageButton16 = findViewById(R.id.imageButton16);
         ImageButton imageButton17 = findViewById(R.id.imageButton17);
@@ -89,7 +89,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton2.setOnClickListener(this);
         imageButton3.setOnClickListener(this);
         imageButton4.setOnClickListener(this);
-        imageButton5.setOnClickListener(this);
+        //imageButton5.setOnClickListener(this);
         imageButton6.setOnClickListener(this);
         imageButton7.setOnClickListener(this);
         imageButton8.setOnClickListener(this);
@@ -98,7 +98,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton11.setOnClickListener(this);
         imageButton12.setOnClickListener(this);
         imageButton13.setOnClickListener(this);
-        imageButton14.setOnClickListener(this);
+        //imageButton14.setOnClickListener(this);
         imageButton15.setOnClickListener(this);
         imageButton16.setOnClickListener(this);
         imageButton17.setOnClickListener(this);
