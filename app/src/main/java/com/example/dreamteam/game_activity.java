@@ -260,6 +260,13 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         SimulationModel modl = new SimulationModel("");
         CardPair currentpair = dobbleGame.getCurrCardPair();
         int prediction = modl.lookForMatch(currentpair);
+
+        //time for model to find prediction
+        long timeToFind = modl.getTimeToFind();
+        //display how long model will take
+        TextView timeText = (TextView) findViewById(R.id.timeText);
+        timeText.setText(timeToFind+"" );
+
         final Runnable r = new Runnable() {
             public void run() {
                 //Only make guess if the card pair was not chosen correctly by the other player
@@ -273,7 +280,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
         };
 
-        long timeToFind = modl.getTimeToFind();
+
         handler.postDelayed(r,timeToFind);
     }
 

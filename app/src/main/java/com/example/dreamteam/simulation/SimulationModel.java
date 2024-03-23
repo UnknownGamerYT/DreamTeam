@@ -101,6 +101,9 @@ public class SimulationModel {
     public long eyeMovementDuration(){
         return 250;
     }
+    public long eyeMovementNearDuration(){
+        return 100;
+    }
     //cards > look for a match > select matching pic
     public int lookForMatch(CardPair cardPair){
         this.timeToFind = 1000;
@@ -118,7 +121,7 @@ public class SimulationModel {
             //memorize topCardImages[i];
             //add looking delay
             for (int j=0; j<=bottomCardImages.size()-1; j++) {
-                this.timeToFind += eyeMovementDuration();//todo: increase this by eye movement and other cognitive stages instead
+                this.timeToFind += eyeMovementNearDuration();//todo: increase this by eye movement and other cognitive stages instead
                 //look if there is a match, keep track of what u check, but dont 'hard' memorize the whole card.
                 if(Objects.equals(topCardImages.get(i), bottomCardImages.get(j))){
                     prediction = i;
