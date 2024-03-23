@@ -262,7 +262,11 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         int prediction = modl.lookForMatch(currentpair);
         final Runnable r = new Runnable() {
             public void run() {
-                ButtonPressed(topCardButtons[prediction]);
+                //Only make guess if the card pair was not chosen correctly by the other player
+                if (currentpair == dobbleGame.getCurrCardPair()) {
+                    ButtonPressed(topCardButtons[prediction]);
+                }
+
                 //handler.postDelayed(this, 5000);
             }
 
@@ -270,11 +274,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         };
 
         long timeToFind = modl.getTimeToFind();
-        handler.postDelayed(r,timeToFind);// need to cancel when player guesses correctly first //handler.removeCallbacks(r)// ;
-        if (currentpair != dobbleGame.getCurrCardPair()) {
-            handler.removeCallbacks(r);
-        }
-
+        handler.postDelayed(r,timeToFind);
     }
 
 
