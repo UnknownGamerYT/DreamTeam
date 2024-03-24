@@ -1,8 +1,11 @@
 package com.example.dreamteam;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -12,11 +15,13 @@ import com.example.dreamteam.actr.core.task.Task;
 import com.example.dreamteam.game.Card;
 import com.example.dreamteam.game.CardPair;
 import com.example.dreamteam.game.DobbleGame;
+import com.example.dreamteam.simulation.AttentionTrack;
 import com.example.dreamteam.simulation.SimulationModel;
 
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
@@ -267,6 +272,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         TextView timeText = (TextView) findViewById(R.id.timeText);
         timeText.setText(timeToFind+"" );
 
+        List<AttentionTrack> attentionTrack = modl.getAttentionTrack();
+        highlightButton(attentionTrack, currentpair);
         final Runnable r = new Runnable() {
             public void run() {
                 //Only make guess if the card pair was not chosen correctly by the other player
@@ -284,6 +291,83 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         handler.postDelayed(r,timeToFind);
     }
 
+    private void highlightButton(List<AttentionTrack> attentionTrack, CardPair currentpair) {
+        long start = 0;
+
+        for (int i=0; i<=attentionTrack.size()-1; i++){
+            long end = start + attentionTrack.get(i).getTime();
+            if (i>0){
+                start = attentionTrack.get(i-1).getTime();
+                end =  attentionTrack.get(i).getTime();}
+
+
+            //top card
+            if (attentionTrack.get(i).getattendedItemId() < 8){
+                ImageButton btn = (ImageButton) findViewById(topCardButtons[attentionTrack.get(i).getattendedItemId()]);
+                //btn.setBackgroundColor(Color.WHITE);
+                Handler handler = new Handler();
+                final Runnable r = new Runnable() {
+                    public void run() {
+                        //Only make guess if the card pair was not chosen correctly by the other player
+                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                            btn.setBackgroundColor(Color.parseColor("#80FF0000"));
+                        }
+                        else{
+                            btn.setBackgroundColor(Color.WHITE);
+                        }
+                    }
+                };
+                handler.postDelayed(r,start);
+                final Runnable r2 = new Runnable() {
+                    public void run() {
+                        //Only make guess if the card pair was not chosen correctly by the other player
+                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                            btn.setBackgroundColor(Color.WHITE);
+                        }
+                    }
+                };
+                handler.postDelayed(r2,end);
+
+            }//bottom card
+            else{
+                ImageButton btn = (ImageButton) findViewById(bottomCardButtons[attentionTrack.get(i).getattendedItemId()-8]);
+                btn.setBackgroundColor(Color.WHITE);
+                Handler handler = new Handler();
+                final Runnable r = new Runnable() {
+                    public void run() {
+                        //Only make guess if the card pair was not chosen correctly by the other player
+                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                            btn.setBackgroundColor(Color.parseColor("#80FF0000"));
+                        }
+                        else{
+                            btn.setBackgroundColor(Color.WHITE);
+                        }
+                    }
+                };
+                handler.postDelayed(r,start);
+                final Runnable r2 = new Runnable() {
+                    public void run() {
+                        //Only make guess if the card pair was not chosen correctly by the other player
+                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                            btn.setBackgroundColor(Color.WHITE);
+                        }
+                    }
+                };
+                handler.postDelayed(r2,end);
+
+
+            }
+            start = end;
+            //try {
+            //    TimeUnit.MILLISECONDS.sleep(50);
+            //} catch (InterruptedException e) {
+            //    Thread.currentThread().interrupt();
+            //}
+
+        }
+
+
+    }
 
 
 

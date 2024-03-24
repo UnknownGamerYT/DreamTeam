@@ -5,6 +5,7 @@ import static java.lang.Math.random;
 
 import com.example.dreamteam.game.CardPair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -19,6 +20,7 @@ public class SimulationModel {
     boolean runUntilStop = false;
 
     long timeToFind = 1000;
+    List<AttentionTrack> attentionTrack = new ArrayList<AttentionTrack>();
     String[] memory;
 
     public SimulationModel(String name) {
@@ -101,14 +103,20 @@ public class SimulationModel {
     public long eyeMovementDuration(){
         return 250;
     }
+
     public long eyeMovementNearDuration(){
-        return 100;
-    }
+        return 150;
+    }//For nearby vision
     //cards > look for a match > select matching pic
     public int lookForMatch(CardPair cardPair){
-        this.timeToFind = 1000;
+        long startDelay = 500;
+        this.timeToFind = startDelay;
         List<Integer> topCardImages = cardPair.cardT.getimages();
         List<Integer> bottomCardImages = cardPair.cardB.getimages();
+
+        //time tracker to display where model looks
+        // struct: Time, attendeditemid
+        this.attentionTrack = new ArrayList<AttentionTrack>();
 
         //todo: create random search sequence, or base it on most apparent colors
 
@@ -117,11 +125,14 @@ public class SimulationModel {
         //^repeat until a match is found.
         int prediction = 0;
         for (int i=0; i<=topCardImages.size()-1; i++){
-            this.timeToFind += eyeMovementDuration();//todo: increase this by eye movement and other cognitive stages instead
+
+            this.timeToFind += eyeMovementDuration() +150;//todo: increase this by eye movement and other cognitive stages instead
+            this.attentionTrack.add(new AttentionTrack(timeToFind-startDelay, i));
             //memorize topCardImages[i];
             //add looking delay
             for (int j=0; j<=bottomCardImages.size()-1; j++) {
                 this.timeToFind += eyeMovementNearDuration();//todo: increase this by eye movement and other cognitive stages instead
+                this.attentionTrack.add(new AttentionTrack(timeToFind-startDelay, topCardImages.size() + j));
                 //look if there is a match, keep track of what u check, but dont 'hard' memorize the whole card.
                 if(Objects.equals(topCardImages.get(i), bottomCardImages.get(j))){
                     prediction = i;
@@ -130,8 +141,17 @@ public class SimulationModel {
 
             }
         }
+        //setAttentionTrack(attentionTrack);
 
         return prediction;
         //return image/button/match/selection
+    }
+
+    public List<AttentionTrack> getAttentionTrack() {
+        return attentionTrack;
+    }
+
+    public void setAttentionTrack(List<AttentionTrack> attentionTrack) {
+        this.attentionTrack = attentionTrack;
     }
 }
