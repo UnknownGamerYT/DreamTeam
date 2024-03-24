@@ -17,42 +17,42 @@
 
         <ImageButton
             android:id="@+id/imageButton10"
-            android:background="@color/white"
             android:layout_width="0.6in"
             android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 10 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/net" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton11"
-            android:background="@color/white"
             android:layout_width="0.6in"
             android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 11 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/moon" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton12"
-            android:background="@color/white"
             android:layout_width="0.6in"
             android:layout_height="0.6in"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 12 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/man" />
+            android:src="@drawable/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,16 +66,16 @@
 
         <ImageButton
             android:id="@+id/imageButton13"
-            android:background="@color/white"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 13 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/question_mark" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageView
             android:id="@+id/imageButton14"
@@ -90,16 +90,16 @@
 
         <ImageButton
             android:id="@+id/imageButton15"
-            android:background="@color/white"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 15 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/spider" />
+            android:src="@drawable/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,42 +113,42 @@
 
         <ImageButton
             android:id="@+id/imageButton16"
-            android:background="@color/white"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 16 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/target" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton17"
-            android:background="@color/white"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 17 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/tree" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton18"
-            android:background="@color/white"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:background="@color/white"
             android:contentDescription="Picture 18 button"
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/turtle" />
+            android:src="@drawable/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -171,7 +171,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/net" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -184,7 +184,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/waterdrop" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -197,7 +197,7 @@
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/yin_yang" />
+            android:src="@drawable/ic_launcher_background" />
 
     </LinearLayout>
 
@@ -221,7 +221,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/skull" />
+            android:src="@drawable/ic_launcher_background" />
 
         <ImageView
             android:id="@+id/imageButton5"
@@ -245,7 +245,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/igloo" />
+            android:src="@drawable/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -269,7 +269,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/icecube" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton8"
@@ -282,7 +282,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ladybug" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <ImageButton
             android:id="@+id/imageButton9"
@@ -295,7 +295,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/eye" />
+            app:srcCompat="@drawable/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -346,10 +346,21 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/CountdownText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ScoreText1"
+
+        />
+
+    <TextView
         android:id="@+id/timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="#fBBf"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@id/linearLayout2"
