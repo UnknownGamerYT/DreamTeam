@@ -240,28 +240,33 @@ public class SimulationModel {
             List<Integer> botimages = new ArrayList<>();
             //set attention to all images momenterally to find most common color
             for (int i = 0; i <= topCardImages.size() - 1; i++) {
-                this.attentionTrack.add(new AttentionTrack(200L / topCardImages.size(), i));
+                this.timeToFind += 500;
+                this.attentionTrack.add(new AttentionTrack(timeToFind , i));
             }
             //set attention to the most common color images
             for (int i = 0; i <= topCardImages.size() - 1; i++) {
                 if (getimageinfo(topCardImages.get(i)).contains(color)) {
-                    this.attentionTrack.add(new AttentionTrack(200L / topCardImages.size(), i));
+                    this.timeToFind += 500;
+                    this.attentionTrack.add(new AttentionTrack(timeToFind , i));
                     topimages.add(i);
                 }
             }
             //set momenterally attention to all bot images checking for most common top color
             for (int i = 0; i <= bottomCardImages.size() - 1; i++) {
                 if (getimageinfo(bottomCardImages.get(i)).contains(color)) {
-                    this.attentionTrack.add(new AttentionTrack(200L / bottomCardImages.size(), topCardImages.size() + i));
+                    this.timeToFind += 500;
+                    this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + i));
                     botimages.add(i);
                 }
             }
             //if color match exists check one by one
             if (botimages.size() != 0) {
                 for (int i = 0; i <= topimages.size() - 1; i++) {
-                    this.attentionTrack.add(new AttentionTrack(200L / topimages.size(), topimages.get(i)));
+                    this.timeToFind += 500;
+                    this.attentionTrack.add(new AttentionTrack(timeToFind , topimages.get(i)));
                     for (int j = 0; j <= botimages.size() - 1; j++) {
-                        this.attentionTrack.add(new AttentionTrack(200L / botimages.size(), topCardImages.size() + botimages.get(j)));
+                        this.timeToFind += 500;
+                        this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + botimages.get(j)));
                         if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
                             prediction = topimages.get(i);
                         }
