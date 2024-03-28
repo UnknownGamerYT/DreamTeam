@@ -270,7 +270,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         Handler handler = new Handler();
         SimulationModel modl = new SimulationModel("");
         CardPair currentpair = dobbleGame.getCurrCardPair();
-        int prediction = modl.lookForMatch(currentpair);
+        int prediction = modl.LookForColoursFirst(currentpair);
 
         //time for model to find prediction
         long timeToFind = modl.getTimeToFind();

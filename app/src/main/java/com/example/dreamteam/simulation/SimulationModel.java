@@ -3,14 +3,16 @@ package com.example.dreamteam.simulation;
 
 import static java.lang.Math.random;
 
+import com.example.dreamteam.R;
 import com.example.dreamteam.game.CardPair;
-
+import com.example.dreamteam.game.Deck;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
 public class SimulationModel {
 
     String name;
@@ -153,5 +155,163 @@ public class SimulationModel {
 
     public void setAttentionTrack(List<AttentionTrack> attentionTrack) {
         this.attentionTrack = attentionTrack;
+    }
+
+    public List<String> getimageinfo(int integer){
+        List<String> carddetails = new ArrayList<>();
+        if (integer == R.drawable.target ||integer == R.drawable.no_entry || integer == R.drawable.maple_leaf || integer == R.drawable.man || integer == R.drawable.lips || integer == R.drawable.ladybug || integer == R.drawable.key || integer == R.drawable.heart || integer == R.drawable.hammer || integer == R.drawable.fire || integer == R.drawable.clown || integer == R.drawable.clock || integer == R.drawable.anchor || integer == R.drawable.car || integer == R.drawable.bottle){
+            carddetails.add("red");
+        }
+        if (integer == R.drawable.turtle ||integer == R.drawable.tree ||integer == R.drawable.spots ||integer == R.drawable.question_mark || integer == R.drawable.dinosaur || integer == R.drawable.carrot || integer == R.drawable.apple || integer == R.drawable.cactus || integer == R.drawable.clover) {
+            carddetails.add("green");
+        }
+        if (integer == R.drawable.scissors || integer == R.drawable.net || integer == R.drawable.kitty || integer == R.drawable.eye || integer == R.drawable.dragon || integer == R.drawable.dobble || integer == R.drawable.birdie || integer == R.drawable.candle) {
+            carddetails.add("purple");
+        }
+        if (integer == R.drawable.sun ||integer == R.drawable.moon || integer == R.drawable.lightbulb || integer == R.drawable.exclamation_mark || integer == R.drawable.dog || integer == R.drawable.daisy ||integer == R.drawable.bolt || integer == R.drawable.cheese) {
+            carddetails.add("yellow");
+        }
+        if (integer == R.drawable.zebra ||integer == R.drawable.yin_yang ||integer == R.drawable.spider || integer == R.drawable.skull || integer == R.drawable.padlock || integer == R.drawable.ladybug || integer == R.drawable.glasses || integer == R.drawable.bomb || integer == R.drawable.chess_knight) {
+            carddetails.add("black");
+        }
+        if (integer == R.drawable.zebra ||integer == R.drawable.yin_yang ||integer == R.drawable.spider || integer == R.drawable.snowman || integer == R.drawable.skull || integer == R.drawable.pencil || integer == R.drawable.no_entry || integer == R.drawable.lightbulb || integer == R.drawable.igloo || integer == R.drawable.icecube || integer == R.drawable.ghost || integer == R.drawable.eye || integer == R.drawable.dobble || integer == R.drawable.daisy ||integer == R.drawable.car || integer == R.drawable.bottle || integer == R.drawable.clock || integer == R.drawable.clown || integer == R.drawable.birdie) {
+            carddetails.add("white");
+        }
+        if (integer == R.drawable.tree ||integer == R.drawable.treble_clef ||integer == R.drawable.snowman || integer == R.drawable.carrot) {
+            carddetails.add("orange");
+        }
+        if (integer == R.drawable.waterdrop ||integer == R.drawable.snowman || integer == R.drawable.snowflake || integer == R.drawable.pencil || integer == R.drawable.igloo || integer == R.drawable.icecube || integer == R.drawable.ghost || integer == R.drawable.dolphin){
+            carddetails.add("blue");
+        }
+        if (integer == R.drawable.padlock){
+            carddetails.add("grey");
+        }
+        return carddetails;
+    }
+    public Integer LookForColoursFirst(CardPair cardPair){
+        Integer prediction = 0;
+        List<Integer> topcolours = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0));
+        List<Integer> topCardImages = cardPair.cardT.getimages();
+        List<Integer> bottomCardImages = cardPair.cardB.getimages();
+        for (int i=0; i<=topCardImages.size()-1; i++){
+            List<String> imagecolours = getimageinfo(topCardImages.get(i));
+            if (imagecolours.contains("red")){
+                topcolours.set(0,topcolours.get(0)+1);
+            }
+            if (imagecolours.contains("green")){
+                topcolours.set(1,topcolours.get(1)+1);
+            }
+            if (imagecolours.contains("purple")){
+                topcolours.set(2,topcolours.get(2)+1);
+            }
+            if (imagecolours.contains("yellow")){
+                topcolours.set(3,topcolours.get(3)+1);
+            }
+            if (imagecolours.contains("black")){
+                topcolours.set(4,topcolours.get(4)+1);
+            }
+            if (imagecolours.contains("white")){
+                topcolours.set(5,topcolours.get(5)+1);
+            }
+            if (imagecolours.contains("orange")){
+                topcolours.set(6,topcolours.get(6)+1);
+            }
+            if (imagecolours.contains("blue")){
+                topcolours.set(7,topcolours.get(7)+1);
+            }
+            if (imagecolours.contains("grey")){
+                topcolours.set(8,topcolours.get(8)+1);
+            }
+        }
+        List<Integer> sortedcolourslist = new ArrayList<>(topcolours);
+        Integer previousamount = 0;
+        Integer push = 0;
+        do {
+            Collections.sort(sortedcolourslist,Collections.reverseOrder());
+            if (previousamount == sortedcolourslist.get(0)){
+                push +=1;
+            }else{
+                push =0;
+            }
+            previousamount = sortedcolourslist.get(0);
+            String color = findcolour(topcolours, sortedcolourslist.get(0),push);
+            sortedcolourslist.set(0, 0);
+            List<Integer> topimages = new ArrayList<>();
+            List<Integer> botimages = new ArrayList<>();
+            //set attention to all images momenterally to find most common color
+            for (int i = 0; i <= topCardImages.size() - 1; i++) {
+                this.attentionTrack.add(new AttentionTrack(200L / topCardImages.size(), i));
+            }
+            //set attention to the most common color images
+            for (int i = 0; i <= topCardImages.size() - 1; i++) {
+                if (getimageinfo(topCardImages.get(i)).contains(color)) {
+                    this.attentionTrack.add(new AttentionTrack(200L / topCardImages.size(), i));
+                    topimages.add(i);
+                }
+            }
+            //set momenterally attention to all bot images checking for most common top color
+            for (int i = 0; i <= bottomCardImages.size() - 1; i++) {
+                if (getimageinfo(bottomCardImages.get(i)).contains(color)) {
+                    this.attentionTrack.add(new AttentionTrack(200L / bottomCardImages.size(), topCardImages.size() + i));
+                    botimages.add(i);
+                }
+            }
+            //if color match exists check one by one
+            if (botimages.size() != 0) {
+                for (int i = 0; i <= topimages.size() - 1; i++) {
+                    this.attentionTrack.add(new AttentionTrack(200L / topimages.size(), topimages.get(i)));
+                    for (int j = 0; j <= botimages.size() - 1; j++) {
+                        this.attentionTrack.add(new AttentionTrack(200L / botimages.size(), topCardImages.size() + botimages.get(j)));
+                        if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
+                            prediction = topimages.get(i);
+                        }
+                    }
+                }
+            }
+            //repeat until match
+        }while(prediction == 0);
+
+        return prediction;
+    }
+    public String findcolour(List<Integer> topcolours, Integer maxColorAmount,Integer push){
+
+        boolean found = false;
+        int counter = 0;
+        String color = "";
+        do{
+            if (maxColorAmount == topcolours.get(counter) && push >= 0){
+                if (push == 0){
+                    found = true;
+                }
+                if(push > 0){
+                    push -=1;
+                }else if (counter == 0){
+                    color = "red";
+                } else if (counter == 1) {
+                    color = "green";
+                } else if (counter == 2) {
+                    color = "purple";
+                } else if (counter == 3) {
+                    color = "yellow";
+                } else if (counter == 4) {
+                    color = "black";
+                } else if (counter == 5) {
+                    color = "white";
+                } else if (counter == 6) {
+                    color = "orange";
+                } else if (counter == 7) {
+                    color = "blue";
+                }else if (counter == 8){
+                    color = "grey";
+                }
+
+            }
+            if (maxColorAmount == 0){
+                color = "none";
+                found = true;
+            }
+            counter +=1;
+        }while(!found);
+        return color;
     }
 }

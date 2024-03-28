@@ -167,33 +167,5 @@ public class Deck {
         }
         return cards;
     }
-    //stoped at igloo for colours
-    public List<String> getimageinfo(int integer){
-        List<String> carddetails = new ArrayList<>();
-        if (integer == R.drawable.heart || integer == R.drawable.hammer || integer == R.drawable.fire || integer == R.drawable.clown || integer == R.drawable.clock || integer == R.drawable.anchor || integer == R.drawable.car || integer == R.drawable.bottle){
-            carddetails.add("red");
-        }
-        if (integer == R.drawable.dinosaur || integer == R.drawable.carrot || integer == R.drawable.apple || integer == R.drawable.cactus || integer == R.drawable.clover) {
-            carddetails.add("green");
-        }
-        if (integer == R.drawable.eye || integer == R.drawable.dragon || integer == R.drawable.dobble || integer == R.drawable.birdie || integer == R.drawable.candle) {
-            carddetails.add("purple");
-        }
-        if (integer == R.drawable.exclamation_mark || integer == R.drawable.dog || integer == R.drawable.daisy ||integer == R.drawable.bolt || integer == R.drawable.cheese) {
-            carddetails.add("yellow");
-        }
-        if (integer == R.drawable.glasses || integer == R.drawable.bomb || integer == R.drawable.chess_knight) {
-            carddetails.add("black");
-        }
-        if (integer == R.drawable.igloo || integer == R.drawable.icecube || integer == R.drawable.ghost || integer == R.drawable.eye || integer == R.drawable.dobble || integer == R.drawable.daisy ||integer == R.drawable.car || integer == R.drawable.bottle || integer == R.drawable.clock || integer == R.drawable.clown || integer == R.drawable.birdie) {
-            carddetails.add("white");
-        }
-        if (integer == R.drawable.carrot) {
-            carddetails.add("orange");
-        }
-        if (integer == R.drawable.igloo || integer == R.drawable.icecube || integer == R.drawable.ghost || integer == R.drawable.dolphin){
-            carddetails.add("blue");
-        }
-        return carddetails;
-    }
+
 }
