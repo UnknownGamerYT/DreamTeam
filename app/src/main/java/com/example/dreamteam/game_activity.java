@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
@@ -26,7 +27,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class game_activity extends AppCompatActivity implements View.OnClickListener {
     DobbleGame dobbleGame;
-    boolean runModel = true;
+    boolean runModel = true;// disable for 1v1 enable for 1 v model
+    boolean runCountdown = true;//mostly for testing, determines if the game is played with cooldown breaks
+    boolean enabled = true;//enable or disable buttons. other methods were causing problems...
     int[] bottomCardButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9};
     int[] topCardButtons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
     int[] allButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9,R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
@@ -54,21 +57,9 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         //I think we proceed with simulation of actR
 
 
-        //bullshit actr nonsense
         Task task = new Task("dobble");
         Model model = new Model("Model1", task);
-        /*
-        model.addVisual();
-        Event event = new Event() {
-            @Override
-            public void action() {
 
-            }
-        };
-        model.addEvent(event);
-        model.runCommand("add-dm");
-        model.setParameter();
-        model.run();*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
@@ -112,8 +103,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         imageButton17.setOnClickListener(this);
         imageButton18.setOnClickListener(this);
         //imageButton7.setOnClickListener(this);
-        //Countdown();
-        Update_Game();
+        Countdown();
+
 
 
 
@@ -123,7 +114,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         //if one button is enabled all should be. had to add this because app would crash when button is clicked during countdown before first pair is drawn
         ImageButton img1 = (ImageButton) findViewById(bottomCardButtons[0]);
-        if(img1.isEnabled())
+        if(enabled)
             switch (v.getId()) {
                 case R.id.imageButton:
                     ButtonPressed(R.id.imageButton);
@@ -186,54 +177,56 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     }
 
     public void ButtonPressed(int buttonId) {
-
-        CardPair cardPair = dobbleGame.getCurrCardPair();
-
-        TextView text = (TextView) findViewById(R.id.ScoreText);
-        String[] separated = text.getText().toString().split(" ");
-        int value = Integer.parseInt(separated[1]);
-        TextView text1 = (TextView) findViewById(R.id.ScoreText1);
-        String[] separated1 = text1.getText().toString().split(" ");
-        int value1 = Integer.parseInt(separated1[1]);
-
         ImageButton img = (ImageButton) findViewById(buttonId);
-        int symbolId = (Integer) img.getTag();//Integer.parseInt(
-        if(cardPair.isMatchingSymbol(symbolId)){
-            cardPair.solved = true;
-            //Countdown();
-            Update_Game();
-        }
+        if(enabled){
+            CardPair cardPair = dobbleGame.getCurrCardPair();
 
-        //int[] images = dobbleGame.getFullImageList();
-        //Random random = new Random();
-        //img.setImageResource(images[random.nextInt(images.length)]);
-        if (cardPair.solved == true)//if wins
-        {
-            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
-                value1 += 1;
+            TextView text = (TextView) findViewById(R.id.ScoreText);
+            String[] separated = text.getText().toString().split(" ");
+            int value = Integer.parseInt(separated[1]);
+            TextView text1 = (TextView) findViewById(R.id.ScoreText1);
+            String[] separated1 = text1.getText().toString().split(" ");
+            int value1 = Integer.parseInt(separated1[1]);
+
+
+            int symbolId = (Integer) img.getTag();//Integer.parseInt(
+            if(cardPair.isMatchingSymbol(symbolId)){
+                cardPair.solved = true;
+                Countdown();
+                //Update_Game();
+            }
+
+            //int[] images = dobbleGame.getFullImageList();
+            //Random random = new Random();
+            //img.setImageResource(images[random.nextInt(images.length)]);
+            if (cardPair.solved == true)//if wins
+            {
+                if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)){
+                    value1 += 1;
+                }
+                else {
+                    value += 1;
+                }
+                Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
+                String newText = "Score: " + value;
+                text.setText(newText);
+                String newText1 = "Score: " + value1;
+                text1.setText(newText1);
             }
             else {
-                value += 1;
-            }
-            Toast.makeText(getApplicationContext(), "Congratulations!", Toast.LENGTH_SHORT).show();
-            String newText = "Score: " + value;
-            text.setText(newText);
-            String newText1 = "Score: " + value1;
-            text1.setText(newText1);
-        }
-        else {
-            if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)) {
-                value1 -= 1;
-            }
-            else {
-                value -= 1;
-            }
-            Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_SHORT).show();
-            String newText = "Score: " + value;
-            text.setText(newText);
-            String newText1 = "Score: " + value1;
-            text1.setText(newText1);
+                if (Arrays.stream(topCardButtons).anyMatch(i -> i == buttonId)) {
+                    value1 -= 1;
+                }
+                else {
+                    value -= 1;
+                }
+                Toast.makeText(getApplicationContext(), "Incorrect, point deducted", Toast.LENGTH_SHORT).show();
+                String newText = "Score: " + value;
+                text.setText(newText);
+                String newText1 = "Score: " + value1;
+                text1.setText(newText1);
 
+            }
         }
 
 
@@ -262,7 +255,6 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         if(runModel){
             initModel();
         }
-
     }
 
     public void initModel(){
@@ -283,7 +275,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         final Runnable r = new Runnable() {
             public void run() {
                 //Only make guess if the card pair was not chosen correctly by the other player
-                if (currentpair == dobbleGame.getCurrCardPair()) {
+                if (currentpair == dobbleGame.getCurrCardPair()&& !currentpair.solved) {
                     ButtonPressed(topCardButtons[prediction]);
                 }
 
@@ -300,6 +292,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     private void highlightButton(List<AttentionTrack> attentionTrack, CardPair currentpair) {
         long start = 0;
 
+
         for (int i=0; i<=attentionTrack.size()-1; i++){
             long end = start + attentionTrack.get(i).getTime();
             if (i>0){
@@ -314,8 +307,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
                 Handler handler = new Handler();
                 final Runnable r = new Runnable() {
                     public void run() {
-                        //Only make guess if the card pair was not chosen correctly by the other player
-                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                        //Only make guess if the card pair was not chosen correctly by the other player, also if solved dont update(countdown in progress)
+                        if (currentpair == dobbleGame.getCurrCardPair() && !currentpair.solved) {
                             btn.setBackgroundColor(Color.parseColor("#80FF0000"));
                         }
                         else{
@@ -341,8 +334,8 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
                 Handler handler = new Handler();
                 final Runnable r = new Runnable() {
                     public void run() {
-                        //Only make guess if the card pair was not chosen correctly by the other player
-                        if (currentpair == dobbleGame.getCurrCardPair()) {
+                        //Only make guess if the card pair was not chosen correctly by the other player, also if solved dont update(countdown in progress)
+                        if (currentpair == dobbleGame.getCurrCardPair()&& !currentpair.solved) {
                             btn.setBackgroundColor(Color.parseColor("#80FF0000"));
                         }
                         else{
@@ -364,42 +357,44 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
             }
             start = end;
-            //try {
-            //    TimeUnit.MILLISECONDS.sleep(50);
-            //} catch (InterruptedException e) {
-            //    Thread.currentThread().interrupt();
-            //}
 
         }
     }
-    public void Countdown(){
-        DisableButtons();
-        final Handler handler = new Handler();
-        final TextView textView = (TextView) findViewById(R.id.CountdownText);
-        final java.util.concurrent.atomic.AtomicInteger n = new AtomicInteger(3);
-        final Runnable counter = new Runnable() {
-            @Override
-            public void run() {
-                //textView.setVisibility(View.VISIBLE);
-                textView.setText(Integer.toString(n.get()));
-                if(n.getAndDecrement() >= 1 )
-                    handler.postDelayed(this, 1000);
-                else {
-                    textView.setText("");
-                    //EnableButtons();
-                    //Update_Game();
 
+    public void Countdown(){
+        if(!runCountdown){
+            Update_Game();
+        }
+        else{
+            final TextView textView = (TextView) findViewById(R.id.CountdownText);
+            //DisableButtons();
+            enabled= false;
+            new CountDownTimer(5000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    textView.setText(millisUntilFinished/1000 + "");
+                    enabled = false;
+                    //DisableButtons();
                 }
-            }
-        };
-        handler.postDelayed(counter, 1000);
+
+                public void onFinish() {
+                    textView.setText("");
+                    enabled = true;
+                    //EnableButtons();
+                    Update_Game();
+                }
+
+            }.start();
+        }
     }
+
+    //works weird
     private void EnableButtons(){
         for (int i=0; i<=allButtons.length-1; i++){
             ImageButton btn = (ImageButton) findViewById(allButtons[0]);
             btn.setEnabled(true);
         }
     }
+    //works weird
     private void DisableButtons(){
         for (int i=0; i<=allButtons.length-1; i++){
             ImageButton btn = (ImageButton) findViewById(allButtons[0]);
