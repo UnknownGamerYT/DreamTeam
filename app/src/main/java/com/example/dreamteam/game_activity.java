@@ -246,7 +246,6 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         CardPair cardPair = dobbleGame.getCurrCardPair();
 
 
-
         List<Integer> card1Images = cardPair.cardB.getimages();
         List<Integer> card2Images = cardPair.cardT.getimages();
 
