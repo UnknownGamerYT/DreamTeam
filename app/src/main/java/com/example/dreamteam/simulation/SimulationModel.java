@@ -269,6 +269,7 @@ public class SimulationModel {
                         this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + botimages.get(j)));
                         if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
                             prediction = topimages.get(i);
+                            return prediction;
                         }
                     }
                 }
