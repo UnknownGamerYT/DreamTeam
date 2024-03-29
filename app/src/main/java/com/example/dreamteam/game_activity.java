@@ -246,10 +246,22 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             ImageButton img1 = (ImageButton) findViewById(bottomCardButtons[i]);
             img1.setImageResource(card1Images.get(i));
             img1.setTag(card1Images.get(i));
+            Random random = new Random();
+            float rotationAngle = random.nextFloat() * (359);
+            img1.setRotation(rotationAngle);
+            float sizeScale = 0.7F +  random.nextFloat()*0.3F;
+            img1.setScaleX(sizeScale);
+            img1.setScaleY(sizeScale);
             //
             ImageButton img2 = (ImageButton) findViewById(topCardButtons[i]);
             img2.setImageResource(card2Images.get(i));
             img2.setTag(card2Images.get(i));
+            rotationAngle = random.nextFloat() * (359);
+            img2.setRotation(rotationAngle);
+            sizeScale = 0.7F +  random.nextFloat()*0.3F;
+            img2.setScaleX(sizeScale);
+            img2.setScaleY(sizeScale);
+
         }
 
         if(runModel){

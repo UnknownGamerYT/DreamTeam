@@ -11,6 +11,8 @@ public class Card {
     /* Variables */
 
     private final List<Integer> images;
+    public List<Float> rotations;
+    public List<Float> sizes;
     private  int[] textureArray;
 
 

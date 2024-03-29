@@ -3,6 +3,8 @@ package com.example.dreamteam.simulation;
 
 import static java.lang.Math.random;
 
+import android.widget.ImageButton;
+
 import com.example.dreamteam.R;
 import com.example.dreamteam.game.CardPair;
 import com.example.dreamteam.game.Deck;
@@ -21,6 +23,10 @@ public class SimulationModel {
     private double modelTime;
     boolean runUntilStop = false;
 
+    double movementInitiationTime = .050;
+
+    double featurePrepTime = .050;
+    double utilityNoiseS = 0;
     long timeToFind = 1000;
     List<AttentionTrack> attentionTrack = new ArrayList<AttentionTrack>();
     String[] memory;
@@ -103,11 +109,11 @@ public class SimulationModel {
     }
 
     public long eyeMovementDuration(){
-        return 250;
+        return 300;
     }
 
     public long eyeMovementNearDuration(){
-        return 150;
+        return 85;
     }//For nearby vision
     //cards > look for a match > select matching pic
     public int lookForMatch(CardPair cardPair){
@@ -191,7 +197,6 @@ public class SimulationModel {
         List<Integer> topColors = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
         List<Integer> topCardImages = cardPair.cardT.getimages();
         List<Integer> bottomCardImages = cardPair.cardB.getimages();
-
         //get color count?
         topColors = getImageColors(topCardImages, topColors);
 
@@ -226,10 +231,10 @@ public class SimulationModel {
             //if color match exists check one by one
             if (botimages.size() != 0) {
                 for (int i = 0; i <= topimages.size() - 1; i++) {
-                    this.timeToFind += 500;
+                    this.timeToFind += eyeMovementDuration();
                     this.attentionTrack.add(new AttentionTrack(timeToFind , topimages.get(i)));
                     for (int j = 0; j <= botimages.size() - 1; j++) {
-                        this.timeToFind += 500;
+                        this.timeToFind += eyeMovementDuration() ;
                         this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + botimages.get(j)));
                         if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
                             prediction = topimages.get(i);
@@ -247,11 +252,11 @@ public class SimulationModel {
     public void ScanCards(List<Integer> topCardImages, List<Integer> bottomCardImages){
         //set attention to all images momenterally to find most common color
         for (int i = 0; i <= topCardImages.size() - 1; i++) {
-            this.timeToFind += 100;
+            this.timeToFind += eyeMovementNearDuration();
             this.attentionTrack.add(new AttentionTrack(timeToFind , i));
         }
         for (int i = 0; i <= bottomCardImages.size() - 1; i++) {
-            this.timeToFind += 100;
+            this.timeToFind += eyeMovementNearDuration();
             this.attentionTrack.add(new AttentionTrack(timeToFind ,topCardImages.size() + i));
         }
     }
