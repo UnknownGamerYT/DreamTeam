@@ -19,6 +19,7 @@ import com.example.dreamteam.game.DobbleGame;
 import com.example.dreamteam.simulation.AttentionTrack;
 import com.example.dreamteam.simulation.SimulationModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
@@ -241,15 +242,23 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
         List<Integer> card1Images = cardPair.cardB.getimages();
         List<Integer> card2Images = cardPair.cardT.getimages();
-
+        //cardPair.cardT.setRotations();
+        List<Float> rotationListT = new ArrayList<Float>();
+        List<Float> sizesListT = new ArrayList<Float>();
+        List<Float> rotationListB = new ArrayList<Float>();
+        List<Float> sizesListB = new ArrayList<Float>();
         for (int i=0; i<=bottomCardButtons.length-1; i++){
             ImageButton img1 = (ImageButton) findViewById(bottomCardButtons[i]);
             img1.setImageResource(card1Images.get(i));
             img1.setTag(card1Images.get(i));
             Random random = new Random();
+
             float rotationAngle = random.nextFloat() * (359);
+            rotationListB.add(rotationAngle);
             img1.setRotation(rotationAngle);
+
             float sizeScale = 0.7F +  random.nextFloat()*0.3F;
+            sizesListB.add(sizeScale);
             img1.setScaleX(sizeScale);
             img1.setScaleY(sizeScale);
             //
@@ -257,12 +266,18 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
             img2.setImageResource(card2Images.get(i));
             img2.setTag(card2Images.get(i));
             rotationAngle = random.nextFloat() * (359);
+            rotationListT.add(rotationAngle);
             img2.setRotation(rotationAngle);
             sizeScale = 0.7F +  random.nextFloat()*0.3F;
+            sizesListT.add(sizeScale);
             img2.setScaleX(sizeScale);
             img2.setScaleY(sizeScale);
 
         }
+        cardPair.cardT.setRotations(rotationListT);
+        cardPair.cardB.setRotations(rotationListB);
+        cardPair.cardT.setSizes(sizesListT);
+        cardPair.cardB.setSizes(sizesListB);
 
         if(runModel){
             initModel();

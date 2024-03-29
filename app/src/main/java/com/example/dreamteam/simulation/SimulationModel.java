@@ -231,10 +231,15 @@ public class SimulationModel {
             //if color match exists check one by one
             if (botimages.size() != 0) {
                 for (int i = 0; i <= topimages.size() - 1; i++) {
-                    this.timeToFind += eyeMovementDuration();
+                    //float rotationFactor = cardPair.cardT.getRotations().get(topimages.get(i));
+                    //float sizeFactor = cardPair.cardT.getSizes().get(topimages.get(i));
+                    //int perceptionTime = 25;
+                    this.timeToFind += eyeMovementDuration();//* (2 - sizeFactor); //+ (Math.abs(rotationFactor - 180)*perceptionTime/180)* (2 - sizeFactor);
                     this.attentionTrack.add(new AttentionTrack(timeToFind , topimages.get(i)));
                     for (int j = 0; j <= botimages.size() - 1; j++) {
-                        this.timeToFind += eyeMovementDuration() ;
+                        //rotationFactor = cardPair.cardB.getRotations().get(botimages.get(i));
+                        //sizeFactor = cardPair.cardB.getSizes().get(botimages.get(i));
+                        this.timeToFind += eyeMovementDuration();// * (2 - sizeFactor);//+ (Math.abs(rotationFactor - 180)*perceptionTime/180) * (2 - sizeFactor);
                         this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + botimages.get(j)));
                         if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
                             prediction = topimages.get(i);

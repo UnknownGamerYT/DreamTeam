@@ -57,8 +57,19 @@ public class Card {
         return s.concat("\t\t}");
     }
 
+    public List<Float> getRotations() {
+        return rotations;
+    }
 
+    public void setRotations(List<Float> rotations) {
+        this.rotations = rotations;
+    }
 
+    public List<Float> getSizes() {
+        return sizes;
+    }
 
-
+    public void setSizes(List<Float> sizes) {
+        this.sizes = sizes;
+    }
 }
