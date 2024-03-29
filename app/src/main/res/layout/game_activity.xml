@@ -20,6 +20,7 @@
             android:layout_width="0.6in"
             android:layout_height="0.6in"
             android:layout_weight="1"
+            android:rotation="90"
             android:adjustViewBounds="true"
             android:background="@color/white"
             android:contentDescription="Picture 10 button"
