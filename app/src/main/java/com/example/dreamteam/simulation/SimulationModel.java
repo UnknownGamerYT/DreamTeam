@@ -134,12 +134,12 @@ public class SimulationModel {
         int prediction = 0;
         for (int i=0; i<=topCardImages.size()-1; i++){
 
-            this.timeToFind += eyeMovementDuration() +150;//todo: increase this by eye movement and other cognitive stages instead
+            this.timeToFind += eyeMovementDuration();//todo: increase this by eye movement and other cognitive stages instead
             this.attentionTrack.add(new AttentionTrack(timeToFind-startDelay, i));
             //memorize topCardImages[i];
             //add looking delay
             for (int j=0; j<=bottomCardImages.size()-1; j++) {
-                this.timeToFind += eyeMovementNearDuration();//todo: increase this by eye movement and other cognitive stages instead
+                this.timeToFind += eyeMovementNearDuration()+ 75;//todo: increase this by eye movement and other cognitive stages instead
                 this.attentionTrack.add(new AttentionTrack(timeToFind-startDelay, topCardImages.size() + j));
                 //look if there is a match, keep track of what u check, but dont 'hard' memorize the whole card.
                 if(Objects.equals(topCardImages.get(i), bottomCardImages.get(j))){

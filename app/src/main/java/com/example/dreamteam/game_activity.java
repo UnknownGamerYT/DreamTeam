@@ -32,6 +32,7 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
     DobbleGame dobbleGame;
     boolean runModel = true;// disable for 1v1 enable for 1 v model
     boolean runCountdown = true;//mostly for testing, determines if the game is played with cooldown breaks
+    String modelId = "ColorModel";
     boolean enabled = true;//enable or disable buttons. other methods were causing problems...
     int[] bottomCardButtons = new int[] {R.id.imageButton,R.id.imageButton2,R.id.imageButton3,R.id.imageButton4,R.id.imageButton6,R.id.imageButton7,R.id.imageButton8,R.id.imageButton9};
     int[] topCardButtons = new int[] {R.id.imageButton10, R.id.imageButton11,R.id.imageButton12,R.id.imageButton13,R.id.imageButton15,R.id.imageButton16,R.id.imageButton17,R.id.imageButton18};
@@ -63,6 +64,11 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
         if (value.equals("1v1")){
             runModel = false;
+        }
+
+        if (value.equals("SequenceModel") || value.equals("ColorModel"))
+        {
+            modelId = value;
         }
 
 
@@ -298,15 +304,22 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         cardPair.cardB.setSizes(sizesListB);
 
         if(runModel){
-            initModel();
+            initModel(modelId);
         }
     }
 
-    public void initModel(){
+    public void initModel(String modelIdd){
         Handler handler = new Handler();
         SimulationModel modl = new SimulationModel("");
         CardPair currentpair = dobbleGame.getCurrCardPair();
-        int prediction = modl.LookForColoursFirst(currentpair);
+
+        int prediction;
+        if (modelIdd.equals("ColorModel")) {
+            prediction = modl.LookForColoursFirst(currentpair);
+        }
+        else{
+            prediction = modl.lookForMatch(currentpair);
+        }
 
         //time for model to find prediction
         long timeToFind = modl.getTimeToFind();

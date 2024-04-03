@@ -32,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+        Button StartButton3 = findViewById(R.id.StartButton3);
+        StartButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, game_activity.class);
+                myIntent.putExtra("ModelVariant", "SequenceModel");
+                startActivity(myIntent);
+            }
+        });
 
     }
 }

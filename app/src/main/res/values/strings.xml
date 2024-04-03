@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">DreamTeam</string>
-    <string name="startbutton">Start Game</string>
+    <string name="startbutton">Start Color Model</string>
     <string name="startbutton2">Start 1v1 Game</string>
+    <string name="startbutton3">Start sequential Model</string>
     <string name="GameText">GameText</string>
     <string name="imageButton">imageButton</string>
 </resources>
