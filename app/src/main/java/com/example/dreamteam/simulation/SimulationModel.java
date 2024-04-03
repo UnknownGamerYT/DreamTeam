@@ -117,6 +117,7 @@ public class SimulationModel {
     }//For nearby vision
     //cards > look for a match > select matching pic
     public int lookForMatch(CardPair cardPair){
+        //this is initial model we had no more updates were done to it after color model was implemented
         long startDelay = 500;
         this.timeToFind = startDelay;
         List<Integer> topCardImages = cardPair.cardT.getimages();
@@ -125,8 +126,6 @@ public class SimulationModel {
         //time tracker to display where model looks
         // struct: Time, attendeditemid
         this.attentionTrack = new ArrayList<AttentionTrack>();
-
-        //todo: create random search sequence, or base it on most apparent colors
 
         //memorize image from one card, cycle through other card images to look for match
         //track model time of course.
@@ -149,10 +148,9 @@ public class SimulationModel {
 
             }
         }
-        //setAttentionTrack(attentionTrack);
 
         return prediction;
-        //return image/button/match/selection
+
     }
 
     public List<AttentionTrack> getAttentionTrack() {
@@ -231,15 +229,15 @@ public class SimulationModel {
             //if color match exists check one by one
             if (botimages.size() != 0) {
                 for (int i = 0; i <= topimages.size() - 1; i++) {
-                    //float rotationFactor = cardPair.cardT.getRotations().get(topimages.get(i));
-                    //float sizeFactor = cardPair.cardT.getSizes().get(topimages.get(i));
-                    //int perceptionTime = 25;
-                    this.timeToFind += eyeMovementDuration();//* (2 - sizeFactor); //+ (Math.abs(rotationFactor - 180)*perceptionTime/180)* (2 - sizeFactor);
+                    float rotationFactor = cardPair.cardT.getRotations().get(topimages.get(i));
+                    float sizeFactor = cardPair.cardT.getSizes().get(topimages.get(i));
+                    int perceptionTime = 25;
+                    this.timeToFind += eyeMovementDuration() + (Math.abs(rotationFactor - 180)*perceptionTime/180)* (2 - sizeFactor);
                     this.attentionTrack.add(new AttentionTrack(timeToFind , topimages.get(i)));
                     for (int j = 0; j <= botimages.size() - 1; j++) {
-                        //rotationFactor = cardPair.cardB.getRotations().get(botimages.get(i));
-                        //sizeFactor = cardPair.cardB.getSizes().get(botimages.get(i));
-                        this.timeToFind += eyeMovementDuration();// * (2 - sizeFactor);//+ (Math.abs(rotationFactor - 180)*perceptionTime/180) * (2 - sizeFactor);
+                        rotationFactor = cardPair.cardB.getRotations().get(botimages.get(j));
+                        sizeFactor = cardPair.cardB.getSizes().get(botimages.get(j));
+                        this.timeToFind += eyeMovementDuration() + (Math.abs(rotationFactor - 180)*perceptionTime/180) * (2 - sizeFactor);
                         this.attentionTrack.add(new AttentionTrack(timeToFind , topCardImages.size() + botimages.get(j)));
                         if (Objects.equals(topCardImages.get(topimages.get(i)), bottomCardImages.get(botimages.get(j)))) {
                             prediction = topimages.get(i);
