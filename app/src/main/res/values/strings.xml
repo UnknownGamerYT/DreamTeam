@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DreamTeam</string>
-    <string name="startbutton">StartButton</string>
+    <string name="startbutton">Start Game</string>
+    <string name="startbutton2">Start 1v1 Game</string>
     <string name="GameText">GameText</string>
     <string name="imageButton">imageButton</string>
 </resources>

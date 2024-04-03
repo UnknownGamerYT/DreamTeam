@@ -17,7 +17,19 @@ public class MainActivity extends AppCompatActivity {
         StartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, game_activity.class));
+                Intent myIntent = new Intent(MainActivity.this, game_activity.class);
+                myIntent.putExtra("ModelVariant", "ColorModel");
+                startActivity(myIntent);
+            }
+        });
+
+        Button StartButton2 = findViewById(R.id.StartButton2);
+        StartButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this, game_activity.class);
+                myIntent.putExtra("ModelVariant", "1v1");
+                startActivity(myIntent);
             }
         });
 

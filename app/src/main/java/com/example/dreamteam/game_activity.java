@@ -2,12 +2,14 @@ package com.example.dreamteam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +58,13 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
 
 
         //I think we proceed with simulation of actR
+        Intent intent = getIntent();
+        String value = intent.getStringExtra("ModelVariant");
+
+        if (value.equals("1v1")){
+            runModel = false;
+        }
+
 
 
         Task task = new Task("dobble");
@@ -65,6 +74,15 @@ public class game_activity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
         this.dobbleGame = new DobbleGame();
+
+        ImageButton ReturnButton = findViewById(R.id.ReturnButton);
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(game_activity.this, MainActivity.class);
+                startActivity(myIntent);
+            }
+        });
         ImageButton imageButton = findViewById(R.id.imageButton);
         ImageButton imageButton2 = findViewById(R.id.imageButton2);
         ImageButton imageButton3 = findViewById(R.id.imageButton3);

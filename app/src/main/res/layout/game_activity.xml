@@ -332,6 +332,23 @@
 
 </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/ReturnButton"
+        android:layout_width="68dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="332dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:contentDescription="Return to main"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/presence_busy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/ScoreText1"
         android:layout_width="wrap_content"
